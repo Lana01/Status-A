@@ -87,6 +87,7 @@ var querystring = require("querystring"),
 function start(response) {
     console.log("Request handler 'start' was called.");
 
+    //form to upload picture for appraisal
     var body = '<html>'+
         '<head>'+
         '<meta http-equiv="Content-Type" '+
@@ -112,6 +113,7 @@ function start(response) {
 
 
 function upload(response, request) {
+
     console.log("Request handler 'upload' was called.");
 
 
@@ -129,6 +131,7 @@ function upload(response, request) {
 
 
         target_path='./icons/'+files.upload.name;
+        //moving the picture to new location and saving location as string
         fs.rename(files.upload.path, target_path, function(error) {
             if (error) throw error;
             fs.unlink(files.upload.path, function() {
@@ -141,15 +144,15 @@ function upload(response, request) {
 
         response.writeHead(200, {"Content-Type": "text/html"});
         response.write("received image:<br/>");
-        response.write("<img src=target_path>");
+        response.write(files.upload.name);
         response.write(fields.toLocaleString());
         response.write(fields.name);
         response.write(fields.description);
+
+        //saving the string name and other fields
         saveAppraisal(fields.name,fields.description,target_path);
+
         show(response,target_path);
-
-
-
         response.end();
 
     });
@@ -158,7 +161,7 @@ function upload(response, request) {
 }
 
 
-
+//function to show picture of appraisal
 function show(response,name) {
     console.log("Request handler 'show' was called. nd " +name);
     response.writeHead(200, {"Content-Type": "image/png"});
