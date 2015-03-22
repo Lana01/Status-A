@@ -58,10 +58,10 @@ function removeAppraisalType(appraisalID){
 //Helper function
 //openingg db to save data or retrieve
 function openDB () {
-
-
-
-
+ var mongoose = require('mongoose');
+    mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
+    var db = mongoose.connection;
+    return db;
 }
 
 
@@ -69,16 +69,21 @@ function openDB () {
 //when saving the appraisal to db
 function saveAppraisal(name,description,icon)
 {
+    var db=openDB();
+   var appA = {
+      appr_Name: name, appr_Description : description,appr_ID :icon
+    };
+    db.collection('Appraisal_Types').insert(appA);
 
 }
 
-//variables to uploading
 var querystring = require("querystring"),
     fs = require("fs"),
     fse   = require('fs-extra'),
-    formidable = require("formidable");
 
-//upload form
+    formidable = require("formidable"),
+    app=require("express");
+
 function start(response) {
     console.log("Request handler 'start' was called.");
 
@@ -105,10 +110,12 @@ function start(response) {
 
 }
 
+
 function upload(response, request) {
     console.log("Request handler 'upload' was called.");
 
 
+    var target_path=null;
     var form = new formidable.IncomingForm();
     console.log("about to parse");
     form.parse(request, function(error, fields, files) {
@@ -116,42 +123,48 @@ function upload(response, request) {
 
         /* Possible error on Windows systems:
          tried to rename to an already existing file */
+     
         console.log(" FROM : "+files.upload.path+" vs "+files.upload.name);
-        console.log(files.upload.path+"/"+files.upload.name+" vs ")
+        console.log(files.upload.path+"/"+files.upload.name+" vs ");
 
-        fs.rename(files.upload.path, "/tmp/test.png", function(error) {
-            if (error) {
-                fs.unlink("/tmp/test.png");
-                fs.rename(files.upload.path, "/tmp/test.png");
-            }
+
+        target_path='./icons/'+files.upload.name;
+        fs.rename(files.upload.path, target_path, function(error) {
+            if (error) throw error;
+            fs.unlink(files.upload.path, function() {
+                if (error) throw error;
+                response.write('File uploaded to: ' + target_path + ' - ' + files.upload.size + ' bytes');
+            });
         });
+
+        console.log("Done with it");
 
         response.writeHead(200, {"Content-Type": "text/html"});
         response.write("received image:<br/>");
-        response.write("<img src='test.png'>");
+        response.write("<img src=target_path>");
         response.write(fields.toLocaleString());
         response.write(fields.name);
         response.write(fields.description);
+        saveAppraisal(fields.name,fields.description,target_path);
+        show(response,target_path);
 
-        name=fields.toLocaleString();
-        description=fields.description;
-        notRatedIcon=files.upload.name;
-        this.saveAppraisal(name,description,notRatedIcon);
+
+
         response.end();
+
     });
-
   
-    show(response);
+
 }
 
 
 
-
-function show(response) {
-    console.log("Request handler 'show' was called.");
+function show(response,name) {
+    console.log("Request handler 'show' was called. nd " +name);
     response.writeHead(200, {"Content-Type": "image/png"});
-    fs.createReadStream("/tmp/test.png").pipe(response);
+    fs.createReadStream(name).pipe(response);
 }
+
 
 exports.createAppraisalType=createAppraisalType;
 exports.start = start;
