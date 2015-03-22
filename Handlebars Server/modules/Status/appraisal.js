@@ -17,12 +17,19 @@ var notRatedIcon;
 
 
 
-
+var period;
 
 //functions 
-function activateAppraisalType () {
+function activateAppraisalType(apprID) {
 	// body...
-	
+	var d = new Date();
+	period=d;
+	 var db=openDB();
+   var appA = {
+      appr_ID :apprID ,appr_Period : period
+    };
+
+    db.collection('Appraisal_Types').insert(appA);
 
 }
 
