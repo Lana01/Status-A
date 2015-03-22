@@ -31,15 +31,36 @@ function createAppraisalType(response)
 	this.start(response);
 }
 
-function assignAppraisalToPost () {
-	// body...
+function assignAppraisalToPost (apprID, threadID) {
+
+    var mongoose = require('mongoose');
+    mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
+    var db = mongoose.connection;
+    var appThread = {
+      appr_ID: apprID, thread_ID : threadID
+
+    };
+    db.collection('Appraisal_Threads').insert(appThread);
+}
+
+function removeAppraisalType(appraisalID){
+
+    var mongoose = require('mongoose');
+    mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
+    var db = mongoose.connection;
+    db.collection('AppraisalTypes').remove({appr_ID:appraisalID});
+
 
 }
+
+
 
 //Helper function
 //openingg db to save data or retrieve
 function openDB () {
-	// body...
+
+
+
 
 }
 
