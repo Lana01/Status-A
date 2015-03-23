@@ -17,6 +17,15 @@ var notRatedIcon;
 
 
 
+function assignAppraisalToPost()
+{
+
+}
+
+function getAppraisalForPost()
+{
+
+}
 
 var period;
 
