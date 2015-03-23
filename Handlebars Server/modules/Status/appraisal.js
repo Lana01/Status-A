@@ -17,6 +17,7 @@ var notRatedIcon;
 
 
 
+
 var period;
 
 //functions 
@@ -77,7 +78,7 @@ function openDB () {
 function saveAppraisal(name,description,icon)
 {
     var db=openDB();
-   var appA = {
+    var appA = {
       appr_Name: name, appr_Description : description,appr_ID :icon
     };
     db.collection('Appraisal_Types').insert(appA);
