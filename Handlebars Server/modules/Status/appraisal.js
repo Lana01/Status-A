@@ -18,13 +18,18 @@ var notRatedIcon;
 
 
 
-function assignAppraisalToPost(post,appraisal)
+function assignAppraisalToPost(assignAppraisalToPostRequest)
 {
-	post.appraisal = appraisal;
+    assignAppraisalToPost(assignAppraisalToPostRequest.aaprID,assignAppraisalToPostRequest.threadID);
+	return assignAppraisalToPostResult;
 }
 // We need to read
-function getAppraisalForPost(post)
+function getAppraisalForPost(threadID)
 {
+    var mongoose = require('mongoose');
+    mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
+    var db = mongoose.connection;
+    db.collection('Appraisal_Threads').get({appr_ID:appraisalID});
 	return post.appraisal;
 }
 
