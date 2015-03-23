@@ -29,7 +29,9 @@ function getAppraisalForPost(threadID)
     var mongoose = require('mongoose');
     mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
     var db = mongoose.connection;
-    db.collection('Appraisal_Threads').get({appr_ID:appraisalID});
+    var link = db.collection('Appraisal_Threads')find({thread_ID:threadID});
+    // Here we will have to loop through all the links and get theri appraisal Types
+    var appraisalType = db.collection('Appraisal_Types')find({appr_ID:link.thread_ID});
 	return post.appraisal;
 }
 
