@@ -17,12 +17,13 @@ var notRatedIcon;
 
 
 
-function assignAppraisalToPost(Post post,Appraisal appraisal)
+
+function assignAppraisalToPost(post,appraisal)
 {
 	post.appraisal = appraisal;
 }
 // We need to read
-function getAppraisalForPost(Post post)
+function getAppraisalForPost(post)
 {
 	return post.appraisal;
 }
