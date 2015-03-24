@@ -1,19 +1,22 @@
 
 //Db
+var dbs;
 function dbConnection(){
     var mongoose = require('mongoose');
 
 //Connect to the db.
     mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
+
     var db = mongoose.connection;
 
 
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function (callback) {
-        console.log('Connected...');
+        console.log('Connected... now return');
+        dbs=db;
     });
 
-    return db;
+
 }
 
 //class AppraisalType
@@ -26,6 +29,12 @@ function AppraisalType (nme,des,rate,act) {
 
 }
 
+//AppraisalTypeActivation
+function AppraisalTypeActivation()
+{
+    this.activationPeriod;
+}
+
 //class AppraisalLevel 
 function AppraisalLevel () {
 	// body...
@@ -35,25 +44,46 @@ function AppraisalLevel () {
 	
 }
 
+var CreateAppraisalTypeRequest=
+{
+};
 
+var CreateAppraisalTypeResult={
 
-var d=new AppraisalLevel();
-d.name=asdasd
+};
+
 var BuzzStatus = function(){};
 
-var CreateAppraisalTypeRequest=
-{
-	return AppraisalType("","","","");
-}
+exports.createAppraisalType = function(createAppraisalTypeRequest){
 
-var CreateAppraisalTypeRequest=
-{
-	return AppraisalType("","","","");
 
-BuzzStatus.prototype.CreateAppraisalType= function(createAppraisalTypeRequest : CreateAppraisalTypeRequest){
+    console.log("indised an APP");
+    //only adding to database left
 
-    return new CreateAppraisalTypeRequest;
+    var createAppraisalTypeResult=new AppraisalType("FunnyAppraisalType","smilies","smile.png","time");
+
+    console.log(createAppraisalTypeResult.name+" vs "+createAppraisalTypeResult.description);
+    return createAppraisalTypeResult;
 };
+
+exports.removeAppraisalType = function(removeAppraisalTypeRequest ){
+
+    //getting name and removing to the database
+    var id=removeAppraisalTypeRequest.name;
+    return "Removed";
+
+};
+
+exports.activateAppraisalType=function(activateAppraisalTypeRequest)
+{
+    //adding just period to the class instance
+    console.log(activateAppraisalTypeRequest.name+" recieved");
+    //need to update database for this
+    activateAppraisalTypeRequest.activityPeriod=new Date();
+    return activateAppraisalTypeRequest;
+
+};
+
 
 
 
