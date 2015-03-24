@@ -5,8 +5,31 @@
 /***********************************************************************/
 /**************************Database_Connection**************************/
 //Retrieve db.
-function dbConnection(){
-    var mongoose = require('mongoose');
+
+var mongoose = require('mongoose');
+
+var ProfileSchema = mongoose.Schema({
+
+    userId      :String,
+    moduleId    :String,
+    status      :Number
+
+});
+
+
+ProfileSchema.methods.show = function(){
+    console.log(this.userId + " " + this.moduleId + " " + this.status);
+}
+
+var Profile = mongoose.model('Profile',ProfileSchema);
+
+
+var profile1 = new Profile({ userId: 'u12345678', moduleId:'COS332', status:0});
+
+
+
+function openDbConnection(){
+
 
 //Connect to the db.
     mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
@@ -20,54 +43,59 @@ function dbConnection(){
 
     return db;
 }
+
+function closeDbConnection(db){
+
+    db.close(function(){
+        console.log('Closing connection...');
+    });
+}
+
+var db = openDbConnection();
 /***********************************************************************/
 /****************************BuzzStatus_Class**************************/
 var BuzzStatus = function(){};
 
-BuzzStatus.prototype.getProfileStatus = function(getProfileStatusRequest){
+BuzzStatus.prototype.getStatusForProfile = function(getStatusForProfileRequest){
 
-    return new setStatusCalculatorResult();
+    var result = new getStatusForProfileResult();
+    result.status.statusValue = getStatusForProfileRequest.user_status;
+
+    return result;
 };
 
 BuzzStatus.prototype.setStatusCalculator = function(setStatusCalculatorRequest){
 
-    return new getStatusForProfileResult();
+    var result = new getStatusForProfileResult();
+    result.status.statusValue = setStatusCalculatorRequest.user_status;
+    //updateStatusPointsForProfile();
+    return result;
 };
 
-function setStatusCalculator(setStatusCalculatorRequest) {
+
+var setStatusCalculatorRequest = function(module_Id,AccessProfileResult){
 
 
+    this.isOpen = false;
+
+    db.collection('spaces').findOne({moduleID:module_Id}, function (err,data) {
+
+        if(data.isOpen){
+            AccessProfileResult.accessmentValue;
+        }
+
+    });
+
+    return AccessProfileResult.accessmentValue;
 }
 
-
-function setStatusCalculatorRequest(modID){
-
-    var db = dbConnection();
-
-    BuzzSpace.getModuleId(modID);
-};
-
-setStatusCalculatorRequest.prototype.getBuzzSpace = function(BuzzSpace){
-
-    if(BuzzSpace.isOpen == true){
-
-    }else{
-
-    }
-};
-
-
-setStatusCalculatorRequest.prototype.getProfileAccessor = function(ProfileAccessor){
-
+setStatusCalculatorRequest.prototype.getProfileAccessor = function(AccessProfileResult){
     //ProfileAccessor to be used for calculation of the status.
 };
 
 
 var setStatusCalculatorResult = function(){
-
 };
-
-
 
 var Status = function(){
     this.statusValue = 0.0;
@@ -75,43 +103,46 @@ var Status = function(){
 
 Status.prototype.setStatusValue = function(statusValue){
     this.statusValue = statusValue;
-}
+};
 
 Status.prototype.getStatusValue = function(){
     return this.statusValue;
-}
+};
 
 
-var getStatusForProfileRequest = function(){
+var getStatusForProfileRequest = function(user_id,module_id){
     //Retrieve user and module id from database.
+    var db = openDbConnection();
+
+    db.collection('Profile').findOne({userId:user_id,moduleId:module_id},function(err,data){
+        console.log(user_id + " " + module_id);
+    });
+
+    this.user_id = user_id;
+    this.module_id = module_id;
+    this.user_status = 0.0;
 };
 
 
 var getStatusForProfileResult = function(){
 
+    this.status = new Status();
+    this.status.statusValue = 0;
 };
 
-/*******************************************************************/
-/***************************BUZZ SPACE***************************/
-var BuzzSpace = function(academicYear, isOpen, moduleId){
-    this.academicYear = academicYear;
-    this.isOpen = isOpen;
-    this.moduleId = moduleId;
+function updateAllStatusPoints(user_Id,mod_Id,newStatus){
 
-};
-
-//var db = dbConnection();
-
-setStatusCalculatorRequest();
-
-function updateAllStatusPoints(){
-
+    db.collection('spaces').findOne({userId:user_Id,moduleId:mod_Id}).update({status:newStatus});
 }
 
-function updateStatusPointsForProfile(){
-
+function updateStatusPointsForProfile(user_Id,mod_Id,newStatus){
+    db.collection('spaces').findOne({userId:user_Id,moduleId:mod_Id}).update({status:newStatus});
 }
-//
+
+/*
+* Test
+* setStatusCalculatorRequest('zzz');
+* */
 
 
 
