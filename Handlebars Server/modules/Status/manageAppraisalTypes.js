@@ -15,11 +15,12 @@ var AppraisalTypesSchema = mongoose.Schema({
     appr_ID      :String,
     appr_Name    :String,
     appr_Description : String,
+    appr_ActivityPeriod : Number,
     appr_Subtypes : [appr_SubTypes]
 
 });
 var appraisalType = mongoose.model('AppraisalType', AppraisalTypesSchema);
-removeAppraisalType('0');
+
 function dbConnection(){
     mongoose = require('mongoose');
 
@@ -49,7 +50,7 @@ function createAppraisalSubType(name, pointValue, iconID)
     return subType;
 }
 //Create type
-function createAppraisalType(apprID, apprName, apprDesc, apprSub)
+function createAppraisalType(apprID, apprName, apprDesc,apprActivity, apprSub)
 {
 
 
@@ -57,6 +58,7 @@ function createAppraisalType(apprID, apprName, apprDesc, apprSub)
     type.appr_ID = apprID;
     type.appr_Name = apprName;
     type.appr_Description = apprDesc;
+    type.appr_ActivityPeriod = apprActivity;
     type.appr_Subtypes = apprSub;
     type.save(function (err){if(err) return handleError(err);})
     console.log("saved to db");
@@ -70,10 +72,14 @@ function removeAppraisalType(apprID)
         if(err) return handleError(err);
     }
 }
-
+createAppraisalSubType()
+function activateAppraisalType(apprID, activityPeriod){
+    appraisalType.update({appr_ID: apprID},{ $set: {appr_ActivityPeriod: activityPeriod}},callback);
+}
 //class AppraisalType
-function AppraisalType (nme,des,rate,act) {
+function AppraisalType (id,nme,des,rate,act) {
 	// body...
+    this.id = id;
 	this.name=nme; //string
 	this.description=des;  //string
 	this.notRatedIcon=rate;  //string
@@ -121,7 +127,7 @@ exports.createAppraisalType = function(createAppraisalTypeRequest){
 exports.removeAppraisalType = function(removeAppraisalTypeRequest ){
 
     //getting name and removing to the database
-    var id=removeAppraisalTypeRequest.name;
+    var id=removeAppraisalTypeRequest.id;
     return "Removed";
 
 };
