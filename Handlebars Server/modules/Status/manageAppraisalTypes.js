@@ -1,8 +1,27 @@
 
 //Db
 var dbs;
+var mongoose;
+dbConnection();
+
+//Schemas
+var appr_SubTypes = mongoose.Schema({
+    name     :String,
+    point_value    :Number,
+    icon_id : String
+});
+var AppraisalTypesSchema = mongoose.Schema({
+
+    appr_ID      :String,
+    appr_Name    :String,
+    appr_Description : String,
+    appr_Subtypes : [appr_SubTypes]
+
+});
+var appraisalType = mongoose.model('AppraisalType', AppraisalTypesSchema);
+removeAppraisalType('0');
 function dbConnection(){
-    var mongoose = require('mongoose');
+    mongoose = require('mongoose');
 
 //Connect to the db.
     mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
@@ -17,6 +36,39 @@ function dbConnection(){
     });
 
 
+}
+
+//Create Subtype
+function createAppraisalSubType(name, pointValue, iconID)
+{
+    var apprSub = mongoose.model('appr_SubTypes', appr_SubTypes);
+    var subType = new apprSub;
+    subType.name = name;
+    subType.point_value = pointValue;
+    subType.icon_id = iconID;
+    return subType;
+}
+//Create type
+function createAppraisalType(apprID, apprName, apprDesc, apprSub)
+{
+
+
+    var type = new appraisalType;
+    type.appr_ID = apprID;
+    type.appr_Name = apprName;
+    type.appr_Description = apprDesc;
+    type.appr_Subtypes = apprSub;
+    type.save(function (err){if(err) return handleError(err);})
+    console.log("saved to db");
+}
+
+//remove type
+function removeAppraisalType(apprID)
+{
+
+    appraisalType.remove({appr_id : apprID}), function(err){
+        if(err) return handleError(err);
+    }
 }
 
 //class AppraisalType
