@@ -17,6 +17,25 @@ var notRatedIcon;
 
 
 
+
+function assignAppraisalToPost(assignAppraisalToPostRequest)
+{
+    assignAppraisalToPost(assignAppraisalToPostRequest.apprID,assignAppraisalToPostRequest.threadID);
+    return assignAppraisalToPostResult;
+}
+
+function getAppraisalsForPost(threadID)
+{
+    var mongoose = require('mongoose');
+    mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
+    var db = mongoose.connection;
+    /*appraisals was previously Appraisal_Threads, but that is now removed from the database
+     */
+    // var link = db.collection('Appraisals').find({threadID:threadID});
+    var appraisalTypes = db.getCollection('Appraisals').find({threadID:threadID}, {appraisalLevel:1, _id:0})
+    return appraisalTypes;
+}
+
 var period;
 
 //functions 
@@ -56,8 +75,6 @@ function removeAppraisalType(appraisalID){
     mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
     var db = mongoose.connection;
     db.collection('AppraisalTypes').remove({appr_ID:appraisalID});
-
-
 }
 
 
@@ -77,7 +94,7 @@ function openDB () {
 function saveAppraisal(name,description,icon)
 {
     var db=openDB();
-   var appA = {
+    var appA = {
       appr_Name: name, appr_Description : description,appr_ID :icon
     };
     db.collection('Appraisal_Types').insert(appA);
