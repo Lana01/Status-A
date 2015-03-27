@@ -20,19 +20,20 @@ var notRatedIcon;
 
 function assignAppraisalToPost(assignAppraisalToPostRequest)
 {
-    assignAppraisalToPost(assignAppraisalToPostRequest.aaprID,assignAppraisalToPostRequest.threadID);
-	return assignAppraisalToPostResult;
+    assignAppraisalToPost(assignAppraisalToPostRequest.apprID,assignAppraisalToPostRequest.threadID);
+    return assignAppraisalToPostResult;
 }
-// We need to read
-function getAppraisalForPost(threadID)
+
+function getAppraisalsForPost(threadID)
 {
     var mongoose = require('mongoose');
     mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
     var db = mongoose.connection;
-    var link = db.collection('Appraisal_Threads')find({thread_ID:threadID});
-    // Here we will have to loop through all the links and get theri appraisal Types
-    var appraisalType = db.collection('Appraisal_Types')find({appr_ID:link.appr_ID});
-	return post.appraisal;
+    /*appraisals was previously Appraisal_Threads, but that is now removed from the database
+     */
+    // var link = db.collection('Appraisals').find({threadID:threadID});
+    var appraisalTypes = db.getCollection('Appraisals').find({threadID:threadID}, {appraisalLevel:1, _id:0})
+    return appraisalTypes;
 }
 
 var period;
