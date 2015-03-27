@@ -1,33 +1,24 @@
+//var users = require('./routes/users');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var routes = require('./routes/index');
-//var users = require('./routes/users');
-
-var app = express();
-// Scribe js for logging of server events. Go to http://localhost:5000/logs for more detail on logs for each day
-var scribe = require('scribe-js')(); //loads Scribe
-app.use(scribe.express.logger()); //Log each request
-app.use('/logs', scribe.webPanel());
-// Database connection using mongoose
-var connection = require('./modules/Database/connect.js') //Initial connection to the database
-// React js
+var router = require('./routes/index');
+var scribe = require('scribe-js')();
+var ldap = require('ldapjs');
 var React = require('react');
-// il8n translate
+var nodemailer = require('nodemailer');
+var aop = require("node-aop");// Node.js require. Use window.aop in browser
+var Database = require('./modules/Database/Database');
 var i18n = new (require('i18n-2'))({
     // setup some locales - other locales default to the first locale
     locales: ['en', 'de']
 });
-// ldap js
-var ldap = require('ldapjs');
-// nodemailer
-var nodemailer = require('nodemailer');
-// node-aop
-var aop = require("node-aop");// Node.js require. Use window.aop in browser
+
+Database.connectToDatabase();
+
 /*
 **************TO-DO******************
 * jsreport
@@ -37,13 +28,15 @@ var aop = require("node-aop");// Node.js require. Use window.aop in browser
 * node-cache caching framework
 * restify REST framework
  */
+
+var app = express();
+
+app.use(scribe.express.logger()); //Log each request
+app.use('/logs', scribe.webPanel());//Access logs at http://localhost:5000/logs
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-//**********************Include various modules from different groups here******************************
-var spaces = require('./modules/Spaces/spaces.js');
-console.log(spaces.createBuzzSpace());
-//**********************Include various modules from different groups here******************************
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -53,7 +46,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', router);
 //app.use('/users', users);
 
 // catch 404 and forward to error handler
@@ -86,10 +79,32 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-/*
+
+//**********************Include various modules from different groups here******************************
+var BuzzStatus = require('./modules/Status/BuzzStatus');
+var AppraisalLevel = require('./modules/Status/AppraisalLevel');
+var AppraisalType = require('./modules/Status/AppraisalType');
+
+BuzzStatus.getStatusForProfile({profileID: "5510932ec1df10641d5e9608"}, function(result){
+    console.log(result);
+});
+
+BuzzStatus.setStatusCalculator({spaceID: 'COS 332', profileAssessorID: 'NumPostsAssessor'});
+
+//Testing of Appraisal Type registration.
+var appraisalLevel1 = new AppraisalLevel("Mildly Annoying", 1, "ICON_1");
+var appraisalLevel2 = new AppraisalLevel("SO Annoying", 2, "ICON_2");
+
+var newAppraisalType = new AppraisalType("Annoying", "This post is annoying", "NOT_RATED_ICON", [appraisalLevel1,appraisalLevel2]);
+BuzzStatus.createAppraisalType({appraisalType: newAppraisalType},function(result){
+    console.log(result);
+});
+
+//**********************Include various modules from different groups here******************************
+
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
     console.log("Node server running on port: " + port);
 });
-*/
+
 module.exports = app;

@@ -1,26 +1,16 @@
 var express = require('express');
+var reports = require('../modules/Reporting/reporting');
 var router = express.Router();
 
-function getProfile (id) {
- return {title: "user " + id};
-}
-
-//rewuire module
-///Get obejcts from module
+//require module
+///Get objects from module
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
 //Pass to page
-  res.render('index', { title: 'Test' });
-});
- 
 
-//Eg use get arguments from URL
-router.get('/user', function(req, res, next) {
-//Pass to page
-  res.render('index', getProfile(req.query.id));
+    res.render('index', { title: 'Test' });
 });
-
 
 
 module.exports = router;
