@@ -2,7 +2,7 @@
  * Created by Abrie van Aardt on 2015/03/25.
  */
 
-function ThreadsDepthAssessor(){
+function ThreadsDepthAssessor(profileID){
     /**
      * Assesses specified profile according to criterion
      *
@@ -14,7 +14,7 @@ function ThreadsDepthAssessor(){
     };
 }
 
-function NumPostsAssessor(){
+function NumPostsAssessor(profileID){
     /**
      * Assesses specified profile according to criterion
      *
@@ -26,7 +26,7 @@ function NumPostsAssessor(){
     };
 }
 
-function RoleAssessor(){
+function RoleAssessor(profileID){
     /**
      * Assesses specified profile according to criterion
      *
@@ -38,7 +38,7 @@ function RoleAssessor(){
     };
 }
 
-function WeightedSumProfileAssessor(){
+function WeightedSumProfileAssessor(profileID){
     /**
      * Assesses specified profile according to criterion
      *
@@ -50,7 +50,7 @@ function WeightedSumProfileAssessor(){
     };
 }
 
-function AppraisalAssessor(){
+function AppraisalAssessor(profileID){
     /**
      * Assesses specified profile according to criterion
      *

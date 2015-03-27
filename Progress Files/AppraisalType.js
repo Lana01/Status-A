@@ -11,6 +11,7 @@
  * @param _AppraisalLevelList
  * @constructor
  */
+ //class of AppraisalType
 function AppraisalType(_name, _description, _notRatedIcon, _availableFrom, _availableTo, _AppraisalLevelList){
     this.name = _name;
     this.description = _description;
