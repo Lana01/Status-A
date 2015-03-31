@@ -59,7 +59,27 @@ function RoleAssessor(){
      * @returns assessProfileResult //{contributionResult: {assessmentContribution: Double}}
      */
     this.assessProfile = function(assessProfileRequest){
-        return {contributionResult: {assessmentContribution: 3.0}};
+
+        var mongoose = require('mongoose');
+        mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
+        var db = mongoose.connection;
+
+        var id = assessProfileRequest.profileID;
+
+        /*
+        get roleID in database and assign value according to role.
+         */
+        var roleValue = db.getCollection('CorrectField').find({userID:id}, {role:1, _id:0});
+
+       /*
+       assign value according to specific role;
+        */
+        var value = 0;
+
+
+
+
+        return {contributionResult: {assessmentContribution: value}};
     };
 }
 
