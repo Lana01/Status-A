@@ -10,6 +10,14 @@ function ThreadsDepthAssessor(){
      * @returns assessProfileResult //{contributionResult: {assessmentContribution: Double}}
      */
     this.assessProfile = function(assessProfileRequest){
+
+        var mongoose = require('mongoose');
+        mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
+        var db = mongoose.connection;
+
+        var id = assessProfileRequest.profileID;
+        
+
         return {contributionResult: {assessmentContribution: 1.0}};
     };
 }
@@ -22,7 +30,16 @@ function NumPostsAssessor(){
      * @returns assessProfileResult //{contributionResult: {assessmentContribution: Double}}
      */
     this.assessProfile = function(assessProfileRequest){
-        return {contributionResult: {assessmentContribution: 2.0}};
+
+        var mongoose = require('mongoose');
+        mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
+        var db = mongoose.connection;
+
+        var id = assessProfileRequest.profileID;
+
+        var numPosts = db.getCollection('Threads').find({thread_CreaterID:id}).count()
+
+        return {contributionResult: {assessmentContribution: numPosts}};
     };
 }
 
