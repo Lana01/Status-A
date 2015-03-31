@@ -123,6 +123,12 @@ function AppraisalAssessor(){
      * @returns assessProfileResult //{contributionResult: {assessmentContribution: Double}}
      */
     this.assessProfile = function(assessProfileRequest){
+
+        /*
+        sum up the appraisal value of all the threads the user made in that space?
+         */
+
+
         return {contributionResult: {assessmentContribution: 5.0}};
     };
 }
