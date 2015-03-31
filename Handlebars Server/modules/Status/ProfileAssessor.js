@@ -15,8 +15,16 @@ function ThreadsDepthAssessor(){
         mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
         var db = mongoose.connection;
 
+        /*
+        Find the number of threads the user created.
+         */
         var id = assessProfileRequest.profileID;
-        
+        var numThreads = db.getCollection('Threads').find({thread_CreaterID:id}).count();
+
+        /*
+        Get the average tree size
+         */
+
 
         return {contributionResult: {assessmentContribution: 1.0}};
     };
@@ -37,7 +45,7 @@ function NumPostsAssessor(){
 
         var id = assessProfileRequest.profileID;
 
-        var numPosts = db.getCollection('Threads').find({thread_CreaterID:id}).count()
+        var numPosts = db.getCollection('Threads').find({thread_CreaterID:id}).count();
 
         return {contributionResult: {assessmentContribution: numPosts}};
     };
