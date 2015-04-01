@@ -142,7 +142,7 @@ function AppraisalAssessor(){
         var id = assessProfileRequest.profileID;
 
         //get the userid
-        var userID = db.getCollection("Profiles").find({_id:profileID},{userId:1,_id:0});
+        var userID = db.getCollection('Profiles').find({_id:profileID},{userId:1,_id:0});
         userID = userID.userId;
 
         //get the module that the profile is assigned to.
@@ -154,8 +154,6 @@ function AppraisalAssessor(){
 
 
         //for each thread, get the appraisal level and appraisal rating
-
-        console.log(userID);
         return {contributionResult: {assessmentContribution: 5.0}};
     };
 }
