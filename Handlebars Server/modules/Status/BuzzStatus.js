@@ -174,6 +174,48 @@ function createAppraisalType(createAppraisalTypeRequest, callback){
  */
 function activateAppraisalType(activateAppraisalTypeRequest){
     //stub
+   
+    var appraisalid=activateAppraisalTypeRequest.appraisalTypeID;
+    var spaceType=mongoose.model('Spaces_Assessors',Schemas.statusSchema);
+   
+    var appraisalType= mongoose.model('Appraisal_Types',Schemas.appraisalTypeSchema);
+    var appraisalTypeActivation=mongoose.model('Appraisal_Type_Activations',Schemas.appraisalTypeActivationSchema);
+    var spaceid=activateAppraisalTypeRequest.spaceID;
+    var period={
+        from:new Date();,
+        to:new Date();
+    };
+    var notupdated=null;
+    //checking if appraisalID exist 
+    appraisalType.find({appraisalLevelIDs:appraisalid},'name',function(error,found){
+        if(found!=null)
+        {
+            appraisalTypeActivation.update({appraisalType:},{$set:{spaceID:spaceid,activationPeriod:period}},function(error,updated){
+                if(updated==0)
+                {
+                    notupdated=error;
+                }
+            });
+        }
+
+    });
+
+    if(notupdated==null)
+    {
+        spaceType.update({spaceID:spaceid},{$set:{isOpen:true}},function(error,spaced){
+            if(notupdated==0)
+            {
+                throw "Space Doesnt Exist";
+            }
+        });
+    }
+
+
+
+
+
+
+
 }
 
 /**
@@ -192,6 +234,16 @@ function assignAppraisalToPost(assignAppraisalToPostRequest){
  */
 function removeAppraisalType(removeAppraisalTypeRequest){
     //stub
+    var appraisalid=removeAppraisalTypeRequest.appraisalTypeID;
+    var Appraisal_Types=mongoose.model('Appraisal_Types',Schemas.appraisalTypeSchema);
+    Appraisal_Types.remove({appraisalLevelIDs:appraisalid},function(erro){
+        if(!erro)
+        {
+            console.log("Removed sucessful");
+        }
+
+
+    });
 }
 
 /**
