@@ -84,7 +84,6 @@ app.use(function(err, req, res, next) {
 
 var AppraisalType = require('./modules/Status/test');
 
-test
 
 //**********************Include various modules from different groups here******************************
 
