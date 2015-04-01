@@ -182,15 +182,15 @@ function activateAppraisalType(activateAppraisalTypeRequest){
     var appraisalTypeActivation=mongoose.model('Appraisal_Type_Activations',Schemas.appraisalTypeActivationSchema);
     var spaceid=activateAppraisalTypeRequest.spaceID;
     var period={
-        from:new Date();,
-        to:new Date();
+        from:new Date(),
+        to:new Date()
     };
     var notupdated=null;
     //checking if appraisalID exist 
     appraisalType.find({appraisalLevelIDs:appraisalid},'name',function(error,found){
         if(found!=null)
         {
-            appraisalTypeActivation.update({appraisalType:},{$set:{spaceID:spaceid,activationPeriod:period}},function(error,updated){
+            appraisalTypeActivation.update({appraisalType:appraisalid},{$set:{spaceID:spaceid,activationPeriod:period}},function(error,updated){
                 if(updated==0)
                 {
                     notupdated=error;
