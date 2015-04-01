@@ -136,3 +136,5 @@ function updateStatusPointsForProfile(user_Id,mod_Id,newStatus){
 //setStatusCalculatorRequest('zzz');
 //updateAllStatusPoints('u23456789','30');
 
+
+
