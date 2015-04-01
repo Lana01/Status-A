@@ -11,7 +11,7 @@ describe('Automatic testing of Status A', function(){
     });
     // Here we test ProfileAssessor
     it('ProfileAssessor Test 1', function(){
-        var tmp = profileAssessor.
+        var tmp = profileAssessor.create('ThreadsDepthAssessor');
 
 
         // other tests ...
