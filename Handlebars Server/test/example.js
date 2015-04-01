@@ -1,41 +1,22 @@
 var test = require('unit.js');
+var status = require('../modules/Status/status');
+var buzzStatus = require('../modules/Status/BuzzStatus');
+var profileAssessor = require('../modules/Status/ProfileAssessor');
+var Schemas = require('../modules/Status/Schemas');
+var appraisalType = require('../modules/Status/AppraisalType');
 
-describe('Learning by the example', function(){
-    it('example variable', function(){
-        // just for example of tested value
-        var example = 'hello world';
-        test
-            .string(example)
-            .startsWith('hello')
-            .match(/[a-z]/)
-            .given(example = 'you are welcome')
-            .string(example)
-            .endsWith('welcome')
-            .contains('you')
-            .when('"example" becomes an object', function(){
-                example = {
-                    message: 'hello world',
-                    name: 'Nico',
-                    job: 'developper',
-                    from: 'France'
-                };
-            })
-            .then('test the "example" object', function(){
-                test
-                    .object(example)
-                    .hasValue('developper')
-                    .hasProperty('name')
-                    .hasProperty('from', 'France')
-                    .contains({message: 'hello world'})
-                ;
-            })
-            .if(example = 'bad value')
-            .error(function(){
-                example.badMethod();
-            })
-        ;
+describe('Automatic testing of Status A', function(){
+    // Here we test BuzzStatus
+    it('Buzz Status test 1', function(){
+
     });
-    it('other test case', function(){
+    // Here we test ProfileAssessor
+    it('ProfileAssessor Test 1', function(){
+
+        // other tests ...
+    });
+    // Here we test status
+    it('Status test 1', function(){
         // other tests ...
     });
 });
