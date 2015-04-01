@@ -224,7 +224,14 @@ function activateAppraisalType(activateAppraisalTypeRequest){
  * @param assignAppraisalToPostRequest Structure of {appraisal :{threadID: String,profileID: String, appraisalLevel: String}}
  */
 function assignAppraisalToPost(assignAppraisalToPostRequest){
-    //stub
+    var threadID = assignAppraisalToPostRequest.threadID;
+    var profileID = assignAppraisalToPostRequest.profileID;
+    var appraisalLevelID = assignAppraisalToPostRequest.appraisalLevelID;
+    var appraisalModel = mongoose.model('Appraisals', Schemas.appraisalSchema);
+    appraisalModel.create({threadID : threadID, profileID: profileID, appraisalTypeID: appraisalLevelID}, function (err, small) {
+        if (err) return handleError(err);
+        // saved!
+    })
 }
 
 /**
