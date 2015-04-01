@@ -172,9 +172,10 @@ factory['AppraisalsAssessor'] = AppraisalAssessor;
  * @param particularAssessor String specifying which ProfilerAssessor to make
  * @returns ProfileAssessor
  */
-function create(particularAssessor){
+function create(particularAssessor,callback){
     if (typeof factory[particularAssessor] === 'function')
-        return new factory[particularAssessor]();
+        //return new factory[particularAssessor]();
+        callback(new factory[particularAssessor]());
     else
         return null;
 }
