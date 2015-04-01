@@ -182,7 +182,7 @@ function activateAppraisalType(activateAppraisalTypeRequest){
     var appraisalTypeActivation=mongoose.model('Appraisal_Type_Activations',Schemas.appraisalTypeActivationSchema);
     var spaceid=activateAppraisalTypeRequest.spaceID;
     var period={
-        from:new Date();,
+        from:new Date();
         to:new Date();
     };
     var notupdated=null;
