@@ -27,7 +27,7 @@ function ThreadsDepthAssessor(){
         var numPosts = db.getCollection('Threads').find({thread_CreaterID:userID, thread_SpaceID:moduleID}).count();
 
         /*
-        Get the average tree size
+         Get the average tree size
          */
 
 
@@ -86,13 +86,13 @@ function RoleAssessor(){
         var moduleID  = db.getCollection('Profiles').find({_id:profileID},{moduleId:1, _id:0});
 
         /*
-        get roleID in database and assign value according to role.
+         get roleID in database and assign value according to role.
          */
         var roleValue = db.getCollection('CorrectField').find({userid:userid, moduleId:moduleID}, {role:1, _id:0});
 
-       /*
-       assign value according to specific role;
-        */
+        /*
+         assign value according to specific role;
+         */
         var value = 0;
 
 
@@ -123,12 +123,29 @@ function AppraisalAssessor(){
      * @returns assessProfileResult //{contributionResult: {assessmentContribution: Double}}
      */
     this.assessProfile = function(assessProfileRequest){
-
+        console.log("here");
         /*
-        sum up the appraisal value of all the threads the user made in that space?
+         sum up the appraisal value of all the threads the user made in that space?
          */
 
+        var mongoose = require('mongoose');
+        mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
+        var db = mongoose.connection;
 
+        var id = assessProfileRequest.profileID;
+
+        //get the userid
+        var userID = db.getCollection("Profiles").find({_id:profileID},{userId:1,_id:0});
+
+        //get the module that the profile is assigned to.
+        var moduleID  = db.getCollection('Profiles').find({_id:profileID},{moduleId:1, _id:0});
+
+        //get all the ids of the threads created by the user for that module
+        var threads = db.getCollection('Threads').find({thread_CreaterID:userID, thread_SpaceID:moduleID}, {thread_ID:1,_id:0});
+
+        //for each thread, get the appraisal level and appraisal rating
+
+        console.log(userID);
         return {contributionResult: {assessmentContribution: 5.0}};
     };
 }
@@ -154,4 +171,5 @@ function create(particularAssessor){
         return null;
 }
 
+create('AppraisalsAssessor');
 exports.create = create;
