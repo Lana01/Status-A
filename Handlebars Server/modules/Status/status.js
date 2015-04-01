@@ -128,7 +128,6 @@ function updateAllStatusPoints(user_Id,newStatus){
 }
 
 function updateStatusPointsForProfile(user_Id,mod_Id,newStatus){
-
     db.collection('profiles').update({userId:user_Id,moduleId:mod_Id},
         {$set:{'status':newStatus}},function(err,result){
         });
