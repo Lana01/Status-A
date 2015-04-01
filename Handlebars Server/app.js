@@ -81,24 +81,10 @@ app.use(function(err, req, res, next) {
 });
 
 //**********************Include various modules from different groups here******************************
-var BuzzStatus = require('./modules/Status/BuzzStatus');
-var AppraisalLevel = require('./modules/Status/AppraisalLevel');
-var AppraisalType = require('./modules/Status/AppraisalType');
 
-BuzzStatus.getStatusForProfile({profileID: "5510932ec1df10641d5e9608"}, function(result){
-    console.log(result);
-});
+var AppraisalType = require('./modules/Status/test');
 
-BuzzStatus.setStatusCalculator({spaceID: 'COS 332', profileAssessorID: 'NumPostsAssessor'});
-
-//Testing of Appraisal Type registration.
-var appraisalLevel1 = new AppraisalLevel("Mildly Annoying", 1, "ICON_1");
-var appraisalLevel2 = new AppraisalLevel("SO Annoying", 2, "ICON_2");
-
-var newAppraisalType = new AppraisalType("Annoying", "This post is annoying", "NOT_RATED_ICON", [appraisalLevel1,appraisalLevel2]);
-BuzzStatus.createAppraisalType({appraisalType: newAppraisalType},function(result){
-    console.log(result);
-});
+test
 
 //**********************Include various modules from different groups here******************************
 
