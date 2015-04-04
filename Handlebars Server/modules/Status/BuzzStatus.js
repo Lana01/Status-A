@@ -174,7 +174,7 @@ function createAppraisalType(createAppraisalTypeRequest, callback){
  */
 function activateAppraisalType(activateAppraisalTypeRequest){
     //stub
-   
+    var activateAppraisalTypeResult={};
     var appraisalid=activateAppraisalTypeRequest.appraisalTypeID;
     var spaceType=mongoose.model('Spaces_Assessors',Schemas.statusSchema);
    
@@ -195,6 +195,13 @@ function activateAppraisalType(activateAppraisalTypeRequest){
                 {
                     notupdated=error;
                 }
+                else
+                {
+                    activateAppraisalTypeResult.appraisalType=appraisalid;
+                    activateAppraisalTypeResult.spaceID=spaceid;
+                    activateAppraisalTypeResult.activationPeriod=period;
+
+                }
             });
         }
 
@@ -203,19 +210,19 @@ function activateAppraisalType(activateAppraisalTypeRequest){
     if(notupdated==null)
     {
         spaceType.update({spaceID:spaceid},{$set:{isOpen:true}},function(error,spaced){
-            if(notupdated==0)
+            if(spaced==0)
             {
-                throw "Space Doesnt Exist";
+                console.log( "Space Doesn't  Exist");
+            }
+            else
+            {
+                console.log(activateAppraisalTypeResult);
             }
         });
     }
 
 
-
-
-
-
-
+    return activateAppraisalTypeResult;
 }
 
 /**
@@ -243,14 +250,36 @@ function removeAppraisalType(removeAppraisalTypeRequest){
     //stub
     var appraisalid=removeAppraisalTypeRequest.appraisalTypeID;
     var Appraisal_Types=mongoose.model('Appraisal_Types',Schemas.appraisalTypeSchema);
+    var Appraisal_Levels=mongoose.model('Appraisal_Levels',Schemas.appraisalLevelSchema);;
     Appraisal_Types.remove({appraisalLevelIDs:appraisalid},function(erro){
         if(!erro)
         {
-            console.log("Removed sucessful");
+            console.log("Removed successful Appraisal_Types");
+        }
+        else
+        {
+            console.log("Removed not successful Appraisal_Types");
         }
 
 
     });
+
+    Appraisal_Levels.remove({appraisalType:appraisalid},function(erro){
+        if(!erro)
+        {
+            console.log("Removed successful Appraisal_Levels");
+        }
+        else
+        {
+            console.log("Removed not successful Appraisal_Levels");
+        }
+
+
+    });
+
+
+
+
 }
 
 /**
