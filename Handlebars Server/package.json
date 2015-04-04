@@ -19,6 +19,7 @@
     "nodemailer": "^1.3.2",
     "react": "^0.13.1",
     "scribe-js": "^2.0.4",
-    "serve-favicon": "~2.2.0"
+    "serve-favicon": "~2.2.0",
+    "unit.js": "~1.1.3"
   }
 }
