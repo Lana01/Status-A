@@ -4,6 +4,7 @@
 
 var mongoose = require('mongoose');
 var Schemas = require('./Schemas');
+var Database = require('../Database/Database');
 
 function ThreadsDepthAssessor(){
     /**
@@ -136,16 +137,18 @@ function AppraisalAssessor(){
          sum up the appraisal value of all the threads the user made in that space?
          */
         var Profile = mongoose.model('Profiles', Schemas.profileSchema);
-        var id;
-        Profile.find({moduleId: assessProfileRequest.spaceID}, '_id', function(error, profiles){
+
+        Profile.findOne({moduleId: assessProfileRequest.spaceID}, '_id', function(error, profiles){
             // Check if there was an error in querying the database;
             if(error)
             {
                 console.log(Error(error));
+                //mongoose.disconnect();
             }
             else
             {
                 console.log(profiles._id);
+                //mongoose.disconnect();
             }
         });
 

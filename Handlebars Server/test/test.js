@@ -1,8 +1,7 @@
 var test = require('unit.js');
 var buzzStatus = require('../modules/Status/BuzzStatus');
 var profileAssessor = require('../modules/Status/ProfileAssessor');
-var Schemas = require('../modules/Status/Schemas');
-var appraisalType = require('../modules/Status/AppraisalType');
+var Database = require('../modules/Database/Database');
 
 describe('Automatic testing of Status A', function(){
     // Here we test BuzzStatus
@@ -25,6 +24,7 @@ describe('Automatic testing of Status A', function(){
     });
     // Here we test ProfileAssessor
     it('ProfileAssessor Test 1', function(){
+
         //console.log("Testing..")
         var tmp = profileAssessor.create('AppraisalsAssessor');
         var request = {profileID:'ObjectId("5510932ec1df10641d5e9608")'};
