@@ -175,7 +175,7 @@ function create(particularAssessor){
     //if (typeof factory[particularAssessor] === 'function')
     //{
     //    console.log("Function was called");
-        return factory[particularAssessor];
+        return factory[particularAssessor]();
         //callback(new factory[particularAssessor]());}
    // }
    // else
