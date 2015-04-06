@@ -12,19 +12,15 @@ describe('Automatic testing of Status A', function(){
     // Here we test ProfileAssessor
     it('ProfileAssessor Test 1', function(){
 
-        var tmp = profileAssessor.create('ThreadsDepthAssessor',function(result)
+        var tmp = profileAssessor.create('RoleAssessor',function(result)
         {
-            tmp = result;
-            var request = {profileID:'ObjectId("5510932ec1df10641d5e9608")'};
-            console.log(tmp);
 
-            tmp.assessProfile(request);
+            var request = {profileID:'ObjectId("5510932ec1df10641d5e9608")'};
+            result(request);
+            var a = console.log(tmp);
+            console.log(a.assessmentContribution);
 
         });
-
-
-
-
 
         // other tests ...
     });

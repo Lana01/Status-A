@@ -160,11 +160,11 @@ function AppraisalAssessor(){
 
 //Factory containing the different ProfileAssessor constructors
 var factory = {};
-factory['ThreadsDepthAssessor'] = ThreadsDepthAssessor;
-factory['NumPostsAssessor'] = NumPostsAssessor;
-factory['RoleAssessor'] = RoleAssessor;
-factory['WeightedSumProfileAssessor'] = WeightedSumProfileAssessor;
-factory['AppraisalsAssessor'] = AppraisalAssessor;
+factory['ThreadsDepthAssessor'] = ThreadsDepthAssessor.assessProfile;
+factory['NumPostsAssessor'] = NumPostsAssessor.assessProfile;
+factory['RoleAssessor'] = RoleAssessor.assessProfile;
+factory['WeightedSumProfileAssessor'] = WeightedSumProfileAssessor.assessProfile;
+factory['AppraisalsAssessor'] = AppraisalAssessor.assessProfile;
 
 /**
  * This is a factory function that produces the desired ProfileAssessor object
