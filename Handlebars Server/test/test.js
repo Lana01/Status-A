@@ -29,8 +29,10 @@ describe('Automatic testing of Status A', function(){
         var tmp = profileAssessor.create('AppraisalsAssessor');
         var request = {profileID:'ObjectId("5510932ec1df10641d5e9608")'};
         //test.assert(typeof tmp(request) === 'function');
-
-        // other tests ...
+        test.assert(tmp.name === 'AppraisalsAssessor');
+        tmp.assessProfile(request);
+        //tmp(request);
+        //other tests ...
     });
     // Here we test status
     it('Status test 1', function(){

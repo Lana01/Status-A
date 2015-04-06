@@ -128,6 +128,7 @@ function AppraisalAssessor(){
      * @param assessProfileRequest //{profileID: String}
      * @returns assessProfileResult //{contributionResult: {assessmentContribution: Double}}
      */
+    this.name = 'AppraisalsAssessor';
     this.assessProfile = function(assessProfileRequest){
 
         /*
@@ -159,11 +160,11 @@ function AppraisalAssessor(){
 
 //Factory containing the different ProfileAssessor constructors
 var factory = {};
-factory['ThreadsDepthAssessor'] = ThreadsDepthAssessor.assessProfile;
-factory['NumPostsAssessor'] = NumPostsAssessor.assessProfile;
-factory['RoleAssessor'] = RoleAssessor.assessProfile;
-factory['WeightedSumProfileAssessor'] = WeightedSumProfileAssessor.assessProfile;
-factory['AppraisalsAssessor'] = AppraisalAssessor.assessProfile;
+factory['ThreadsDepthAssessor'] = ThreadsDepthAssessor;
+factory['NumPostsAssessor'] = NumPostsAssessor;
+factory['RoleAssessor'] = RoleAssessor;
+factory['WeightedSumProfileAssessor'] = WeightedSumProfileAssessor;
+factory['AppraisalsAssessor'] = AppraisalAssessor;
 
 /**
  * This is a factory function that produces the desired ProfileAssessor object
@@ -174,15 +175,15 @@ factory['AppraisalsAssessor'] = AppraisalAssessor.assessProfile;
 function create(particularAssessor){
     //if (typeof factory[particularAssessor] === 'function')
     //{
-    //    console.log("Function was called");
-        return factory[particularAssessor]();
+        //console.log("Returning assesor");
+        return new factory[particularAssessor]();
         //callback(new factory[particularAssessor]());}
-   // }
-   // else
-   // {
-   //     console.log("Returning null");
-   //     return null;
-   // }
+    //}
+    //else
+    //{
+        //console.log("Returning null");
+    //    return null;
+    // }
 }
 
 exports.create = create;
