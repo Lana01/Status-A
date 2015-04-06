@@ -2,6 +2,8 @@
  *  TODO This module only provides stub functionality at the moment
  */
 
+
+
 function ThreadsDepthAssessor(){
     /**
      * Assesses specified profile according to criterion
@@ -16,6 +18,7 @@ function ThreadsDepthAssessor(){
         var db = mongoose.connection;
 
         var id = assessProfileRequest.profileID;
+        //console.log(id);
 
         //get the userid
         var userID = db.getCollection("Profiles").find({_id:profileID},{userId:1,_id:0});
@@ -101,10 +104,6 @@ function RoleAssessor(){
          assign value according to specific role;
          */
         var value = 0;
-
-
-
-
         return {contributionResult: {assessmentContribution: value}};
     };
 }
@@ -172,12 +171,18 @@ factory['AppraisalsAssessor'] = AppraisalAssessor.assessProfile;
  * @param particularAssessor String specifying which ProfilerAssessor to make
  * @returns ProfileAssessor
  */
-function create(particularAssessor,callback){
-    if (typeof factory[particularAssessor] === 'function')
-        //return new factory[particularAssessor]();
-        callback(new factory[particularAssessor]());
-    else
-        return null;
+function create(particularAssessor){
+    //if (typeof factory[particularAssessor] === 'function')
+    //{
+    //    console.log("Function was called");
+        return factory[particularAssessor];
+        //callback(new factory[particularAssessor]());}
+   // }
+   // else
+   // {
+   //     console.log("Returning null");
+   //     return null;
+   // }
 }
 
 exports.create = create;
