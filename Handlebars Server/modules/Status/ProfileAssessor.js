@@ -2,7 +2,8 @@
  *  TODO This module only provides stub functionality at the moment
  */
 
-
+var mongoose = require('mongoose');
+var Schemas = require('./Schemas');
 
 function ThreadsDepthAssessor(){
     /**
