@@ -135,23 +135,32 @@ function AppraisalAssessor(){
         /*
          sum up the appraisal value of all the threads the user made in that space?
          */
+        var Profile = mongoose.model('Profiles', Schemas.profileSchema);
+        var id;
+        Profile.find({moduleId: assessProfileRequest.spaceID}, '_id', function(error, profiles){
+            // Check if there was an error in querying the database;
+            if(error)
+            {
+                console.log(Error(error));
+            }
+            else
+            {
+                console.log(profiles._id);
+            }
+        });
 
-        var mongoose = require('mongoose');
-        mongoose.connect('mongodb://45.55.154.156:27017/Buzz');
-        var db = mongoose.connection;
 
-        var id = assessProfileRequest.profileID;
 
         //get the userid
-        var userID = db.getCollection('Profiles').find({_id:profileID},{userId:1,_id:0});
-        userID = userID.userId;
+       // var userID = db.getCollection('Profiles').find({_id:profileID},{userId:1,_id:0});
+        //userID = userID.userId;
 
         //get the module that the profile is assigned to.
-        var moduleID  = db.getCollection('Profiles').find({_id:profileID},{moduleId:1, _id:0});
-        moduleID = moduleID.moduleId;
+        //var moduleID  = db.getCollection('Profiles').find({_id:profileID},{moduleId:1, _id:0});
+        //moduleID = moduleID.moduleId;
 
         //get all the ids of the threads created by the user for that module
-        var threads = db.getCollection('Threads').find({thread_CreaterID:userID, thread_SpaceID:moduleID}, {thread_ID:1,_id:0});
+        //var threads = db.getCollection('Threads').find({thread_CreaterID:userID, thread_SpaceID:moduleID}, {thread_ID:1,_id:0});
 
 
         //for each thread, get the appraisal level and appraisal rating
