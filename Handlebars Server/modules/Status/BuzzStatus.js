@@ -234,11 +234,11 @@ function assignAppraisalToPost(assignAppraisalToPostRequest){
     var threadID = assignAppraisalToPostRequest.threadID;
     var profileID = assignAppraisalToPostRequest.profileID;
     var appraisalLevelID = assignAppraisalToPostRequest.appraisalLevelID;
-    var appraisalModel = mongoose.model('Appraisals', Schemas.appraisalSchema);
-    appraisalModel.create({threadID : threadID, profileID: profileID, appraisalTypeID: appraisalLevelID}, function (err, small) {
-        if (err) return handleError(err);
-        // saved!
-    })
+    var appraisal = mongoose.model('Appraisals', Schemas.appraisalSchema);
+    var tmp = new appraisal({threadID : threadID, profileID: profileID, appraisalTypeID: appraisalLevelID});
+    tmp.save(function(err){ if(err) throw err;});
+
+
 }
 
 /**
@@ -289,8 +289,11 @@ function removeAppraisalType(removeAppraisalTypeRequest){
  * @param callback Invoked after appraisals were retrieved; getAppraisalsForPostResult is provided
  * @returns getAppraisalsForPostResult Structure of {appraisals : [AppraisalLevels,...]}
  */
-function getAppraisalsForPost(getAppraisalsForPostRequest, callback){
+function getAppraisalsForPost(getAppraisalsForPostRequest){
     //stub
+    var appraisalModel = mongoose.model('Appraisals', Schemas.appraisalSchema);
+    return appraisalModel.find({threadID: getAppraisalsForPostRequest.threadID});
+
 }
 
 module.exports.setStatusCalculator = setStatusCalculator;

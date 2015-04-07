@@ -1,10 +1,11 @@
 /**
  *
- * @param _threadID String
- * @param _profileID String
- * @param _appraisalLevel String
+ * @param _threadID OnjectId
+ * @param _profileID ObjectId
+ * @param _appraisalLevel ObjectId
  * @constructor
  */
+
 function AssignAppraisalToPost(_threadID, _profileID,_appraisalLevel){
     this.threadID = _threadID;
     this.profileID = _profileID;

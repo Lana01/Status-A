@@ -1,7 +1,10 @@
 var test = require('unit.js');
 var buzzStatus = require('../modules/Status/BuzzStatus');
 var profileAssessor = require('../modules/Status/ProfileAssessor');
+var AssignAppraisalToPost = require('../modules/Status/AssignAppraisalToPost');
 var Database = require('../modules/Database/Database');
+var mongoose = require('mongoose');
+var Schemas = require("../modules/Status/Schemas");
 
 describe('Automatic testing of Status A', function(){
     // Here we test BuzzStatus
@@ -37,5 +40,16 @@ describe('Automatic testing of Status A', function(){
     // Here we test status
     it('Status test 1', function(){
         // other tests ...
+    });
+    it('Test Appraisals db interaction ', function()
+    {
+
+        var tmp = new AssignAppraisalToPost(mongoose.Types.ObjectId("5513f8934af522f6583d9f15"), mongoose.Types.ObjectId(), mongoose.Types.ObjectId());
+        buzzStatus.assignAppraisalToPost(tmp);
+
+        var appraisalModel = mongoose.model('Appraisals', Schemas.appraisalSchema);
+        appraisalModel.remove({threadID:mongoose.Types.ObjectId("5513f8934af522f6583d9f15")}, function (err) {
+           if(err) throw err;
+        });
     });
 });
