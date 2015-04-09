@@ -1,0 +1,23 @@
+{
+  "name": "status",
+  "version": "0.0.1",
+  "scripts": {},
+  "dependencies": {
+    "database": ">=0.0.1",
+    "mongoose": "^3.8.25"
+  },
+  "devDependencies": { 
+    "mocha": "^2.2.4",
+    "supertest": "^0.15.0",  
+    "unit.js": "^1.1.3"
+  },
+  "main": "status.js",
+  "_id": "status@0.0.1",
+  "dist": {
+    "shasum": "36c35e431c79da5ba409b6ef8a20aad61e30dd1c",
+    "tarball": "https://npm.fury.io/babalela01/status/-/0.0.1.tgz?auth=UMuf9tVfmq_qd-YGjjMf"
+  },
+  "_shasum": "36c35e431c79da5ba409b6ef8a20aad61e30dd1c",
+  "_resolved": "https://npm.fury.io/babalela01/status/-/0.0.1.tgz?auth=UMuf9tVfmq_qd-YGjjMf",
+  "_from": "status@>=0.0.1"
+}
