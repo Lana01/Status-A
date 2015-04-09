@@ -4,6 +4,8 @@
  * Functions returning values rely on other asynchronous functions.
  * As such, they do not explicitly return the data, but rather, follow the convention of
  * passing the return value to a callback function for further processing
+ *
+ * @module buzz-status
  */
 
 var Schemas = require('./Schemas');
@@ -17,7 +19,7 @@ exports = module.exports = function (buzzDatabase) {
      * Assigns the ProfileAssessor to a particular Buzz Space and updates all profile statuses
      *   using the new ProfileAssessor (statusCalculator)
      *
-     * @param setStatusCalculatorRequest Structure of {spaceID: String, profileAssessorID: String}
+     * @param {SetStatusCalculatorRequest} setStatusCalculatorRequest Structure of {spaceID: String, profileAssessorID: String}
      */
     status.setStatusCalculator = function(setStatusCalculatorRequest) {
         var SpaceAssessor = mongoose.model('Spaces_Assessors', Schemas.spaceAssessorSchema);
@@ -176,8 +178,8 @@ exports = module.exports = function (buzzDatabase) {
     /**
      * Activates an Appraisal type for a specific period on a specified Buzz Space
      *
-     * @param {ActivateAppraisalTypeRequest} Structure of {appraisalTypeActivation: {appraisalTypeID: String, spaceID: String}}
-     * @returns {ActivateAppraisalTypeResult}
+     * @param {ActivateAppraisalTypeRequest} activateAppraisalTypeRequest Structure of {appraisalTypeActivation: {appraisalTypeID: String, spaceID: String}}
+     * @returns {ActivateAppraisalTypeResult} activateAppraisalTypeResult
      */
     status.activateAppraisalType = function(activateAppraisalTypeRequest) {
         var activateAppraisalTypeResult = {};
@@ -294,6 +296,7 @@ exports = module.exports = function (buzzDatabase) {
         return appraisalModel.find({threadID: getAppraisalsForPostRequest.threadID});
 
     };
+
 
     return status;
 };
