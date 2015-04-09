@@ -1,9 +1,5 @@
 /**
  *
- */
-
-/**
- *
  * @param _name String
  * @param _rating Integer
  * @param _icon Buffer
@@ -15,4 +11,4 @@ function AppraisalLevel(_name, _rating,_icon){
     this.icon = _icon;
 }
 
-module.exports = AppraisalLevel;
+exports = module.exports = AppraisalLevel;

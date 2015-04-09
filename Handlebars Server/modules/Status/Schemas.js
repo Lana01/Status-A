@@ -65,11 +65,3 @@ module.exports.appraisalLevelSchema = appraisalLevelSchema;
 module.exports.appraisalTypeSchema = appraisalTypeSchema;
 module.exports.appraisalSchema = appraisalSchema;
 module.exports.appraisalTypeActivationSchema = appraisalTypeActivationSchema;
-
-exports['@require'] = ['statusSchema'];
-exports['@require'] = ['spaceAssessorSchema'];
-exports['@require'] = ['profileSchema'];
-exports['@require'] = ['appraisalLevelSchema'];
-exports['@require'] = ['appraisalTypeSchema'];
-exports['@require'] = ['appraisalSchema'];
-exports['@require'] = ['appraisalTypeActivationSchema'];

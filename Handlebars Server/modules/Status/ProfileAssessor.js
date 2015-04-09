@@ -1,7 +1,3 @@
-/**
- *  TODO This module only provides stub functionality at the moment
- */
-
 var mongoose = require('mongoose');
 var Schemas = require('./Schemas');
 var Database = require('../Database/Database');
@@ -36,7 +32,6 @@ function ThreadsDepthAssessor(){
         /*
          Get the average tree size
          */
-
 
         return {contributionResult: {assessmentContribution: 1.0}};
     };

@@ -1,8 +1,5 @@
 /**
  *
- */
-/**
- *
  * @param _name String
  * @param _description String
  * @param _notRatedIcon Buffer
@@ -16,4 +13,4 @@ function AppraisalType(_name, _description, _notRatedIcon, _AppraisalLevelList){
     this.appraisalLevels = _AppraisalLevelList; //This is an ordered list of AppraisalLevel objects
 }
 
-module.exports = AppraisalType;
+exports = module.exports = AppraisalType;

@@ -1,9 +1,5 @@
 /**
  *
- */
-
-/**
- *
  * @param _from Date
  * @param _to Date
  * @param _appraisalTypeID String
@@ -16,6 +12,7 @@ function AppraisalTypeActivation(_from, _to, _appraisalTypeID, _spaceID){
     this.spaceID = _spaceID;
 }
 
-module.exports.AppraisalTypeActivation = AppraisalTypeActivation;
-exports['@require'] = ['AppraisalTypeActivation'];
+exports = module.exports = AppraisalTypeActivation;
+
 //module.exports.setStatusCalculator = setStatusCalculator;
+// we could probably remove this line above ^ ??
