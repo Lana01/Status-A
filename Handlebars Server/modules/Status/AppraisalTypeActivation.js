@@ -16,4 +16,6 @@ function AppraisalTypeActivation(_from, _to, _appraisalTypeID, _spaceID){
     this.spaceID = _spaceID;
 }
 
-modules.exports = AppraisalTypeActivation;
+module.exports.AppraisalTypeActivation = AppraisalTypeActivation;
+exports['@require'] = ['AppraisalTypeActivation'];
+//module.exports.setStatusCalculator = setStatusCalculator;

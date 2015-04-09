@@ -8,7 +8,9 @@
 
 var mongoose = require('mongoose');
 var Schemas = require('./Schemas');
+var electrolyte = require('electrolyte');
 var ProfileAssessor = require('./ProfileAssessor');
+var exports = {};
 
 /**
  * Assigns the ProfileAssessor to a particular Buzz Space and updates all profile statuses
@@ -296,12 +298,23 @@ function getAppraisalsForPost(getAppraisalsForPostRequest){
 
 }
 
-module.exports.setStatusCalculator = setStatusCalculator;
-module.exports.getStatusForProfile = getStatusForProfile;
-module.exports.updateAllStatusPoints = updateAllStatusPoints;
-module.exports.updateStatusPointsForProfile = updateStatusPointsForProfile;
-module.exports.createAppraisalType = createAppraisalType;
-module.exports.activateAppraisalType = activateAppraisalType;
-module.exports.assignAppraisalToPost = assignAppraisalToPost;
-module.exports.removeAppraisalType = removeAppraisalType;
-module.exports.getAppraisalsForPost = getAppraisalsForPost;
+exports = module.exports.setStatusCalculator;
+exports = module.exports.getStatusForProfile = getStatusForProfile;
+exports = module.exports.updateAllStatusPoints = updateAllStatusPoints;
+exports = module.exports.updateStatusPointsForProfile = updateStatusPointsForProfile;
+exports = module.exports.createAppraisalType = createAppraisalType;
+exports = module.exports.activateAppraisalType = activateAppraisalType;
+exports = module.exports.assignAppraisalToPost = assignAppraisalToPost;
+exports = module.exports.removeAppraisalType = removeAppraisalType;
+exports = module.exports.getAppraisalsForPost = getAppraisalsForPost;
+
+
+exports['@require'] = ['setStatusCalculator'];
+exports['@require'] = ['getStatusForProfile'];
+exports['@require'] = ['updateAllStatusPoints'];
+exports['@require'] = ['updateStatusPointsForProfile'];
+exports['@require'] = ['createAppraisalType'];
+exports['@require'] = ['activateAppraisalType'];
+exports['@require'] = ['assignAppraisalToPost'];
+exports['@require'] = ['removeAppraisalType'];
+exports['@require'] = ['getAppraisalsForPost'];

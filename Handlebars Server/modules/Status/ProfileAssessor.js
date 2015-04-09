@@ -23,15 +23,15 @@ function ThreadsDepthAssessor(){
         //console.log(id);
 
         //get the userid
-        var userID = db.getCollection("Profiles").find({_id:profileID},{userId:1,_id:0});
+        var userID = db.collection("Profiles").find({_id:profileID},{userId:1,_id:0});
         userID = userID.userId;
 
         //get the module that the profile is assigned to.
-        var moduleID  = db.getCollection('Profiles').find({_id:profileID},{moduleId:1, _id:0});
+        var moduleID  = db.collection('Profiles').find({_id:profileID},{moduleId:1, _id:0});
         moduleID.moduleId;
 
         //get the number of posts the user made in that module
-        var numPosts = db.getCollection('Threads').find({thread_CreaterID:userID, thread_SpaceID:moduleID}).count();
+        var numPosts = db.collection('Threads').find({thread_CreaterID:userID, thread_SpaceID:moduleID}).count();
 
         /*
          Get the average tree size
@@ -58,15 +58,15 @@ function NumPostsAssessor(){
         var id = assessProfileRequest.profileID;
 
         //get the userid
-        var userID = db.getCollection("Profiles").find({_id:profileID},{userId:1,_id:0});
+        var userID = db.collection("Profiles").find({_id:profileID},{userId:1,_id:0});
         userID.userId;
 
         //get the module that the profile is assigned to.
-        var moduleID  = db.getCollection('Profiles').find({_id:profileID},{moduleId:1, _id:0});
+        var moduleID  = db.collection('Profiles').find({_id:profileID},{moduleId:1, _id:0});
         moduleID.moduleId;
 
         //get the number of posts the user made in that module
-        var numPosts = db.getCollection('Threads').find({thread_CreaterID:userID, thread_SpaceID:moduleID}).count();
+        var numPosts = db.collection('Threads').find({thread_CreaterID:userID, thread_SpaceID:moduleID}).count();
 
 
         return {contributionResult: {assessmentContribution: numPosts}};
@@ -89,17 +89,17 @@ function RoleAssessor(){
         var id = assessProfileRequest.profileID;
 
         //get the userid
-        var userID = db.getCollection("Profiles").find({_id:profileID},{userId:1,_id:0});
+        var userID = db.collection("Profiles").find({_id:profileID},{userId:1,_id:0});
         userID = userID.userId;
 
         //get the module that the profile is assigned to.
-        var moduleID  = db.getCollection('Profiles').find({_id:profileID},{moduleId:1, _id:0});
+        var moduleID  = db.collection('Profiles').find({_id:profileID},{moduleId:1, _id:0});
         moduleID = moduleID.moduleId;
 
         /*
          get roleID in database and assign value according to role.
          */
-        var roleValue = db.getCollection('CorrectField').find({userid:userid, moduleId:moduleID}, {role:1, _id:0});
+        var roleValue = db.collection('CorrectField').find({userid:userid, moduleId:moduleID}, {role:1, _id:0});
         roleValue = roleValue.role;
 
         /*
@@ -155,15 +155,15 @@ function AppraisalAssessor(){
 
 
         //get the userid
-       // var userID = db.getCollection('Profiles').find({_id:profileID},{userId:1,_id:0});
+       // var userID = db.collection('Profiles').find({_id:profileID},{userId:1,_id:0});
         //userID = userID.userId;
 
         //get the module that the profile is assigned to.
-        //var moduleID  = db.getCollection('Profiles').find({_id:profileID},{moduleId:1, _id:0});
+        //var moduleID  = db.collection('Profiles').find({_id:profileID},{moduleId:1, _id:0});
         //moduleID = moduleID.moduleId;
 
         //get all the ids of the threads created by the user for that module
-        //var threads = db.getCollection('Threads').find({thread_CreaterID:userID, thread_SpaceID:moduleID}, {thread_ID:1,_id:0});
+        //var threads = db.collection('Threads').find({thread_CreaterID:userID, thread_SpaceID:moduleID}, {thread_ID:1,_id:0});
 
 
         //for each thread, get the appraisal level and appraisal rating
@@ -199,4 +199,5 @@ function create(particularAssessor){
     // }
 }
 
-exports.create = create;
+module.exports.create = create;
+exports['@require'] = ['create'];

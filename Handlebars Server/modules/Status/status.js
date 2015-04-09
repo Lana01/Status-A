@@ -5,12 +5,12 @@ Feel free to change this.
  */
 
 var files = [];
-files.add(require('./ProfileAssessor'));
-files.add(require('./Appraisal'));
-files.add(require('./AppraisalLevel'));
-files.add(require('./AppraisalType'));
-files.add(require('./BuzzStatus'));
-files.add(require('./ProfileAssessor'));
+files.push(require('./ProfileAssessor'));
+files.push(require('./AppraisalTypeActivation'));
+files.push(require('./AppraisalLevel'));
+files.push(require('./AppraisalType'));
+files.push(require('./BuzzStatus'));
+files.push(require('./ProfileAssessor'));
 
 module.exports = files[0];
 
