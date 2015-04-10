@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 var Schemas = require('./Schemas');
-var Database = require('../Database/Database');
 
+/**
+ * Constructs a ThreadsDepthAssessor
+ * @constructor
+ */
 function ThreadsDepthAssessor(){
     /**
      * Assesses specified profile according to criterion
@@ -37,6 +40,10 @@ function ThreadsDepthAssessor(){
     };
 }
 
+/**
+ * Constructs a NumPostsAssessor
+ * @constructor
+ */
 function NumPostsAssessor(){
     /**
      * Assesses specified profile according to criterion
@@ -68,6 +75,10 @@ function NumPostsAssessor(){
     };
 }
 
+/**
+ * Constructs a RoleAssessor
+ * @constructor
+ */
 function RoleAssessor(){
     /**
      * Assesses specified profile according to criterion
@@ -105,6 +116,10 @@ function RoleAssessor(){
     };
 }
 
+/**
+ * Constructs a WeightedSumProfileAssessor
+ * @constructor
+ */
 function WeightedSumProfileAssessor(){
     /**
      * Assesses specified profile according to criterion
@@ -118,6 +133,10 @@ function WeightedSumProfileAssessor(){
     };
 }
 
+/**
+ * Constructs an AppraisalAssessor
+ * @constructor
+ */
 function AppraisalAssessor(){
     /**
      * Assesses specified profile according to criterion
@@ -166,7 +185,7 @@ function AppraisalAssessor(){
     };
 }
 
-//Factory containing the different ProfileAssessor constructors
+/**Factory containing the different ProfileAssessor constructors*/
 var factory = {};
 factory['ThreadsDepthAssessor'] = ThreadsDepthAssessor;
 factory['NumPostsAssessor'] = NumPostsAssessor;
@@ -175,12 +194,19 @@ factory['WeightedSumProfileAssessor'] = WeightedSumProfileAssessor;
 factory['AppraisalsAssessor'] = AppraisalAssessor;
 
 /**
+ * Static class providing a factory method for creating specialised ProfileAssessors
+ * @type {{ProfileAssessor}}
+ */
+var ProfileAssessor = {};
+
+/**
  * This is a factory function that produces the desired ProfileAssessor object
  *
- * @param particularAssessor String specifying which ProfilerAssessor to make
- * @returns ProfileAssessor
+ * @param {string} specifying which ProfilerAssessor to make
+ * @returns {ProfileAssessor}
  */
-function create(particularAssessor){
+
+ProfileAssessor.create = function(particularAssessor){
     //if (typeof factory[particularAssessor] === 'function')
     //{
         //console.log("Returning assesor");
@@ -192,7 +218,4 @@ function create(particularAssessor){
         //console.log("Returning null");
     //    return null;
     // }
-}
-
-module.exports.create = create;
-exports['@require'] = ['create'];
+};

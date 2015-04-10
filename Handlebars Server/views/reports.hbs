@@ -1,18 +1,52 @@
+<h1>{{title}}</h1>
+
+<hr/>
+<div id="reportType">
+    <label> Please select report category:</label>
+    <select>
+        <option value="report0">Students</option>
+        <option value="report1">Lecturers</option>
+        <option value="report2">Threads</option>
+    </select>
+</div>
+
+<!--So how this is expected to work is all these "SubType" divs will be hidden and then when
+    data is selected from the reportType select box, the appropriate div will become visible.-->
+<div id="SubType_Student">
+    <label> Please select student report category:</label>
+    <select>
+        <option value="">All Students details</option>
+        <option value="report1">All Students per Space</option>
+    </select>
+</div>
+
+<div id="SubType_Lecturers">
+    <label> Please select lecturers report category:</label>
+    <select>
+        <option value="">All lecturers details</option>
+        <option value="report1">All lecturers per Space</option>
+    </select>
+</div>
+
+<div id="SubType_Threads">
+    <label> Please select threads report category:</label>
+    <select>
+        <option value="">All threads</option>
+        <option value="report1">All threads per Space</option>
+        <option value="report1">All threads to be marked</option>
+    </select>
+
+</div>
+<!-- end of report subtype divs-->
+<button>Print report</button>
+
+<!-- Upload report -->
+<label>need to speak to resources to figure out how they wish to take the file and such</label>
+
 <!--
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{{title}}}</title>
-    <link rel='stylesheet' href='/stylesheets/bootstrap-responsive.min.css' />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-
-    <script src="/javascripts/jquery-1.11.2.min.js" ></script>
-    <script src="/javascripts/bootstrap.min.js" ></script>
-    <script src="/javascripts/handlebars.runtime.min.js" ></script>
-
-</head>
-    <body>
-    {{{temp}}}
-    </body>
-</html>
+<div>
+    <button onclick="{{getLecturers}}">getLecturers</button>
+    <button onclick="{{getStudents}}">getLecturers</button>
+    <button onclick="{{getThreads}}">getLecturers</button>
+</div>
 -->

@@ -1,2 +1,26 @@
-<h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+<!-- Context structure:
+	{
+		title: "title"
+		spaces : [
+			{
+				space_ID:"id",
+				space_Name:"name"
+				space_Description:"name"
+			}
+		]	
+	}
+<h2>Buzz Spaces</h2>
+{{#each this.spaces}}
+<div>
+    <script>
+        var t = "{{this.space_ID}}";
+        var ref = encodeURI(t);
+        var a = '<a href="threads?space=' + ref + '">{{this.space_ID}} - {{this.space_Name}}</a>';
+        document.write(a);
+    </script>
+
+    <p>Description: {{this.space_Description}}</p>
+
+</div>
+{{/each}}
