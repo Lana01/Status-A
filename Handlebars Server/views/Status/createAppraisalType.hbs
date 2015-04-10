@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap-responsive.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+
+    <body>
+        <form action="/upload" enctype="multipart/form-data"
+        method="post">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="description" placeholder="Description" required>
+        <input type="file" name="upload" multiple="multiple">
+        <input type="submit" value="Upload file" />
+
+    </form>
+    </body>
+
+
+    </html>
