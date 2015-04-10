@@ -6,6 +6,15 @@
     "buzz-database": ">=0.0.1",
     "mongoose": "^3.8.25"
   },
+ "author": {
+    "name": "Elana Kuun","Tshepiso Magagula","Sifiso Shabangu"," Sean Hill"
+    "email": "u12287343@tuks.co.za",
+    "url": "https://github.com/Lana01/Status-A"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lana01/Status-A"
+  },
   "devDependencies": { 
     "mocha": "^2.2.4",
     "supertest": "^0.15.0",  
