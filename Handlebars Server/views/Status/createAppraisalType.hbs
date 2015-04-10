@@ -6,7 +6,8 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     </head>
 
-    <body>
+    <div>
+    {{body}}
         <form action="/upload" enctype="multipart/form-data"
         method="post">
         <input type="text" name="name" placeholder="Name" required>
@@ -15,7 +16,7 @@
         <input type="submit" value="Upload file" />
 
     </form>
-    </body>
+    </div>
 
 
     </html>
