@@ -1,0 +1,17 @@
+{
+  "name": "buzz-status",
+  "version": "0.0.1",
+  "scripts": {},
+  "dependencies": {
+    "buzz-database": ">=0.0.1",
+    "mongoose": "^3.8.25"
+  },
+  "devDependencies": { 
+    "mocha": "^2.2.4",
+    "supertest": "^0.15.0",  
+    "unit.js": "^1.1.3"
+  },
+  "main": "buzzStatus.js",
+  "_id": "status@0.0.1",
+  "_from": "status@>=0.0.1"
+}

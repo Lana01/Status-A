@@ -37,8 +37,8 @@
       <file leaf-file-name="buzzStatus.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/Status/buzzStatus.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4217687" vertical-offset="8983" max-vertical-offset="9571">
-              <caret line="543" column="92" selection-start-line="543" selection-start-column="92" selection-end-line="543" selection-end-column="92" />
+            <state vertical-scroll-proportion="0.92517006" vertical-offset="0" max-vertical-offset="9571">
+              <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -190,6 +190,7 @@
     <property name="options.lastSelected" value="settings.nodejs" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -238,6 +239,9 @@
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="494065f3-95a2-40df-aeda-a440d88187df" name="Default" comment="" />
@@ -371,8 +375,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/Status/buzzStatus.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4217687" vertical-offset="8983" max-vertical-offset="9571">
-          <caret line="543" column="92" selection-start-line="543" selection-start-column="92" selection-end-line="543" selection-end-column="92" />
+        <state vertical-scroll-proportion="0.92517006" vertical-offset="0" max-vertical-offset="9571">
+          <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
           <folding />
         </state>
       </provider>
