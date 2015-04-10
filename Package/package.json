@@ -7,7 +7,7 @@
     "mongoose": "^3.8.25"
   },
  "author": {
-    "name": "Elana Kuun","Tshepiso Magagula","Sifiso Shabangu"," Sean Hill"
+    "name": "Status-A Group A",
     "email": "u12287343@tuks.co.za",
     "url": "https://github.com/Lana01/Status-A"
   },
@@ -18,7 +18,8 @@
   "devDependencies": { 
     "mocha": "^2.2.4",
     "supertest": "^0.15.0",  
-    "unit.js": "^1.1.3"
+    "unit.js": "^1.1.3",
+	"fs-extra":"^0.18.0"
   },
   "main": "buzzStatus.js",
   "_id": "status@0.0.1",
