@@ -94,7 +94,59 @@ exports = module.exports = function(database, resources, reporting) {
 
     /******** Content Routing ****************/
 
+    /***********Buzz Status routing ****************/
+    var querystring = require("querystring"),
+    fs = require("fs"),
+    fse   = require('fs-extra'),
+    formidable = require("formidable");
 
+    router.get('/createAppraisalType', function (req, res, next) {
+            
+            upload(res,req);
+
+    });
+
+    //saving uploaded data from the form 
+    function upload(response, request) {
+    //console.log("Request handler 'upload' was called.");
+    var target_path=null;
+    var form = new formidable.IncomingForm();
+    //console.log("about to parse");
+    form.parse(request, function(error, fields, files) {
+      
+        
+/* Possible error on Windows systems:
+         tried to rename to an already existing file */
+
+     
+        //console.log(" FROM : "+files.upload.path+" vs "+files.upload.name);
+        //console.log(files.upload.path+"/"+files.upload.name+" vs ");
+
+
+        target_path='./icons/'+files.upload.name;
+        //moving the picture to new location and saving location as string
+        fs.rename(files.upload.path, target_path, function(error) {
+            if (error) throw error;
+            fs.unlink(files.upload.path, function() {
+                if (error) throw error;
+                response.write('File uploaded to: ' + target_path + ' - ' + files.upload.size + ' bytes');
+                var obj={};
+                obj.name=fields.name;
+                obj.description=fields.description;
+                obj.icon=target_path;
+
+            });
+        });
+
+      //  console.log("Done with it");
+
+        response.writeHead(200, {"Content-Type": "text/html"});
+        response.write("received icon:<br/>");
+        //saving the string name and other fields
+        response.end();
+
+    });
+}
 
    return  router;
 
