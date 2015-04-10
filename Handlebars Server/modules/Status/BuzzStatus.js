@@ -510,7 +510,7 @@ exports = module.exports = function (buzzDatabase) {
         var appraisalid = removeAppraisalTypeRequest.appraisalTypeID;
         var Appraisal_Types = mongoose.model('Appraisal_Types', Schemas.appraisalTypeSchema);
         var Appraisal_Levels = mongoose.model('Appraisal_Levels', Schemas.appraisalLevelSchema);
-        ;
+
         Appraisal_Types.remove({appraisalLevelIDs: appraisalid}, function (erro) {
             if (!erro) {
                 console.log("Removed successful Appraisal_Types");
