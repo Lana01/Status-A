@@ -1,0 +1,33 @@
+#appraisalid ul{
+  list-style: none;
+}
+
+#appraisalid li{
+  display: inline;
+}
+<div id="appraisalid">
+<ul>
+{{#each appraisal}}
+
+
+   <li> <h4>{{this.name}}</h4>
+    <a href=appraisal?assigntopost={{this.name}}>
+    <img src={{this.icon}} alt={{this.descrption}} height="42" width="42"> 
+    <a>
+    </li>
+{{/each}}
+
+</ul>
+
+</div>
+
+{ 
+  appraisal : [
+    { name: "Yehuda", descrption: "Katz", icon:"me"},
+    { name: "Carl", descrption: "Lerche" ,icon:"me"},
+    { name: "Alan", descrption: "Johnson" ,icon:"me"}
+  ]
+}
+
+
+
