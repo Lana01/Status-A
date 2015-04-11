@@ -1,10 +1,18 @@
-var test = require('unit.js');
+/*var test = require('unit.js');
 var buzzStatus = require('../modules/Status/BuzzStatus');
 var profileAssessor = require('../modules/Status/ProfileAssessor');
 var AssignAppraisalToPost = require('../modules/Status/AssignAppraisalToPost');
 var Database = require('../modules/Database/Database');
 var mongoose = require('mongoose');
 var Schemas = require("../modules/Status/Schemas");
+
+*/
+var IoC = require('electrolyte');
+
+IoC.loader(IoC.node('../node_modules/buzz-status'));
+var Buzz = IoC.create('buzzStatus');
+
+
 
 describe('Automatic testing of Status A', function(){
     // Here we test BuzzStatus
