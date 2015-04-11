@@ -9,8 +9,8 @@ var Schemas = require("../modules/Status/Schemas");
 */
 var IoC = require('electrolyte');
 
-IoC.loader(IoC.node('../node_modules/buzz-status'));
-var Buzz = IoC.create('buzzStatus');
+IoC.loader(IoC.node_modules());
+var Buzz = IoC.create('buzz-settings');
 
 
 

@@ -1,20 +1,23 @@
 {
   "name": "buzz-status",
-  "version": "1.0.3",
+  "version": "1.0.5",
+  "description": "Status add-on module for the Buzz system.",
   "main": "buzzStatus.js",
   "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lana01/Status-A"
+  },
   "dependencies": {},
   "devDependencies": {
     "mocha": "^2.2.4",
     "supertest": "^0.15.0",
-    "unit.js": "^1.1.3",
-    "fs-extra":"^0.18.0"
+    "unit.js": "^1.1.3"
   },
   "_npmUser": {},
   "author": {
     "name": "Status-A Group A",
-    "email": "u12274195@tuks.co.za",
-    "url": "https://github.com/Lana01/Status-A"
+    "email": "u12274195@tuks.co.za"
   },
   "_id": "buzz-status@1.0.3",
   "_shasum": "5cbc8c0baff35cb057885738563d826c8f0cd9cb",
@@ -25,6 +28,5 @@
     "shasum": "5cbc8c0baff35cb057885738563d826c8f0cd9cb",
     "tarball": "http://45.55.188.104:4873/buzz-status/-/buzz-status-1.0.3.tgz"
   },
-  "_resolved": "http://45.55.188.104:4873/buzz-status/-/buzz-status-1.0.3.tgz",
-  "readme": "ERROR: No README data found!"
+  "_resolved": "http://45.55.188.104:4873/buzz-status/-/buzz-status-1.0.3.tgz"
 }

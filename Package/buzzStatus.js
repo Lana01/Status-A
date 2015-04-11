@@ -8,58 +8,12 @@
  * @module buzz-status
  */
 
-
-
-/**
- * AppraisalType definition
- *
- * @param {string} _name
- * @param {string} _description
- * @param {Buffer} _notRatedIcon
- * @param {Array} _AppraisalLevelList
- * @constructor
- */
-function AppraisalType(_name, _description, _notRatedIcon, _AppraisalLevelList){
-    this.name = _name;
-    this.description = _description;
-    this.notRatedIcon = _notRatedIcon;
-    this.appraisalLevels = _AppraisalLevelList; //This is an ordered list of AppraisalLevel objects
-}
-
-/**
- * AppraisalLevel definition
- *
- * @param {string} _name
- * @param {Number} _rating
- * @param {Buffer} _icon
- * @constructor
- */
-function AppraisalLevel(_name, _rating,_icon){
-    this.name = _name;
-    this.rating = _rating;
-    this.icon = _icon;
-}
-
-/**
- * AppraisalTypeActivation definition
- *
- * @param {Date} _from
- * @param {Date} _to
- * @param {string} _appraisalTypeID
- * @param {string} _spaceID
- * @constructor
- */
-function AppraisalTypeActivation(_from, _to, _appraisalTypeID, _spaceID){
-    this.activationPeriod = {from: _from, to: _to};
-    this.appraisalTypeID = _appraisalTypeID;
-    this.spaceID = _spaceID;
-}
-
 exports = module.exports = function (buzzDatabase) {
     var status = {};
     var mongoose = buzzDatabase.mongoose;
     var db = buzzDatabase.db;
     var Schemas = require('./Schemas')(mongoose);
+
     /**
      * Constructs a ThreadsDepthAssessor
      * @constructor
@@ -266,6 +220,51 @@ exports = module.exports = function (buzzDatabase) {
         //    return null;
         // }
     };
+
+    /**
+     * AppraisalType definition
+     *
+     * @param {string} _name
+     * @param {string} _description
+     * @param {Buffer} _notRatedIcon
+     * @param {Array} _AppraisalLevelList
+     * @constructor
+     */
+    status.AppraisalType = function(_name, _description, _notRatedIcon, _AppraisalLevelList){
+        this.name = _name;
+        this.description = _description;
+        this.notRatedIcon = _notRatedIcon;
+        this.appraisalLevels = _AppraisalLevelList; //This is an ordered list of AppraisalLevel objects
+    }
+
+    /**
+     * AppraisalLevel definition
+     *
+     * @param {string} _name
+     * @param {Number} _rating
+     * @param {Buffer} _icon
+     * @constructor
+     */
+    status.AppraisalLevel = function(_name, _rating,_icon){
+        this.name = _name;
+        this.rating = _rating;
+        this.icon = _icon;
+    }
+
+    /**
+     * AppraisalTypeActivation definition
+     *
+     * @param {Date} _from
+     * @param {Date} _to
+     * @param {string} _appraisalTypeID
+     * @param {string} _spaceID
+     * @constructor
+     */
+    status.AppraisalTypeActivation = function(_from, _to, _appraisalTypeID, _spaceID){
+        this.activationPeriod = {from: _from, to: _to};
+        this.appraisalTypeID = _appraisalTypeID;
+        this.spaceID = _spaceID;
+    }
 
     /**
      * Assigns the ProfileAssessor to a particular Buzz Space and updates all profile statuses
