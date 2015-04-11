@@ -7,15 +7,15 @@
   "devDependencies": {
     "mocha": "^2.2.4",
     "supertest": "^0.15.0",
-    "unit.js": "^1.1.3"
+    "unit.js": "^1.1.3",
+    "fs-extra":"^0.18.0"
   },
   "_npmUser": {},
-  "maintainers": [
-    {
-      "name": "tshepiso",
-      "email": "u12274195@tuks.co.za"
-    }
-  ],
+  "author": {
+    "name": "Status-A Group A",
+    "email": "u12274195@tuks.co.za",
+    "url": "https://github.com/Lana01/Status-A"
+  },
   "_id": "buzz-status@1.0.3",
   "_shasum": "5cbc8c0baff35cb057885738563d826c8f0cd9cb",
   "_from": "buzz-status@>=0.0.1",
