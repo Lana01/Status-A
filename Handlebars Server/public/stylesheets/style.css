@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+#appraisalid ul{
+    list-style: none;
+}
+
+#appraisalid li{
+    display: inline;
+}

@@ -106,6 +106,35 @@ exports = module.exports = function(database, resources, reporting) {
 
     });
 
+    router.get('/appraisals', function (req, res, next) {
+
+        //reference of how to parse object
+       /* {
+            appraisal : [
+                { name: "Yehuda", descrption: "Katz", icon:"me"},
+                { name: "Carl", descrption: "Lerche" ,icon:"me"},
+                { name: "Alan", descrption: "Johnson" ,icon:"me"}
+            ]
+        }*/
+
+        var appraisalType = mongoose.model('Appraisal_Types', Schemas.appraisalTypeSchema);
+        var arr = [];
+        appraisalType.find({}, function (error, found) {
+
+            found.forEach(function(user) {
+                arr.push(
+                    {
+                        name:user.name,
+                        descrption:user.description,
+                        icon:user.notRatedIcon.data
+                    }
+                );
+            });
+        });
+
+        res.render('appraisals', arr);
+    });
+
     //saving uploaded data from the form 
     function upload(response, request) {
     //console.log("Request handler 'upload' was called.");
