@@ -8,10 +8,10 @@ var Schemas = require("../modules/Status/Schemas");
 
 */
 var IoC = require('electrolyte');
-IoC.loader(IoC.node('node_modules'));
+IoC.loader(IoC.node('../node_modules'));
 var buzzStatus = IoC.create('buzz-status');
 
-//console.log(buzzStatus);
+console.log(buzzStatus);
 
 
 describe('Automatic testing of Status A', function(){

@@ -12,7 +12,7 @@ exports = module.exports = function (buzzDatabase) {
     var status = {};
     var mongoose = buzzDatabase.mongoose;
     var db = buzzDatabase.db;
-    var Schemas = require('./Schemas')(mongoose);
+    var Schemas = require('./schemas')(mongoose);
 
     /**
      * Constructs a ThreadsDepthAssessor
