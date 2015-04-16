@@ -7,16 +7,6 @@ var mongoose = require('mongoose');
 var Schemas = require("../modules/Status/Schemas");
 
 */
-var express = require('express');
-var app = express();
-module.exports = app;
-
-
-var path = require('path');
-var favicon = require('serve-favicon');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var scribe = require('scribe-js')();
 
 var IoC = require('electrolyte');
 IoC.loader(IoC.node('node_modules'));
