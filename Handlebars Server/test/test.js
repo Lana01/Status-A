@@ -7,10 +7,25 @@ var mongoose = require('mongoose');
 var Schemas = require("../modules/Status/Schemas");
 
 */
-var IoC = require('electrolyte');
+var express = require('express');
+var app = express();
+module.exports = app;
 
-IoC.loader(IoC.node_modules());
-var Buzz = IoC.create('buzz-status');
+
+var path = require('path');
+var favicon = require('serve-favicon');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var scribe = require('scribe-js')();
+
+var IoC = require('electrolyte');
+IoC.loader(IoC.node(path.resolve(__dirname + "/node_modules")) );
+
+var routes = IoC.create('../routes', app);
+var buzzStatus = IoC.create('../node_modules/buzz-status', app);
+
+
+//console.log(buzzStatus);
 
 
 

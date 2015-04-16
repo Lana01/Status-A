@@ -17,7 +17,8 @@ IoC.loader(IoC.node(path.resolve(__dirname + "/node_modules")) );
  * ../routes is used since it lies in the parent directory of the default IoC loader directory
  */
 var routes = IoC.create('../routes', app);
-console.log(routes);
+var buzzStatus = IoC.create('../node_modules/buzz-status', app);
+console.log(buzzStatus);
 
 app.use(scribe.express.logger()); //Log each request
 app.use('/logs', scribe.webPanel());
