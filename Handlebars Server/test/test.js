@@ -19,13 +19,12 @@ var bodyParser = require('body-parser');
 var scribe = require('scribe-js')();
 
 var IoC = require('electrolyte');
-IoC.loader(IoC.node(path.resolve(__dirname + "/node_modules")) );
-
-var routes = IoC.create('../routes', app);
-var buzzStatus = IoC.create('../node_modules/buzz-status', app);
+IoC.loader(IoC.node('node_modules'));
+var buzzStatus = IoC.create('buzz-status');
 
 
-//console.log(buzzStatus);
+
+console.log(buzzStatus);
 
 
 
