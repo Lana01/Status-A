@@ -8,7 +8,7 @@ var Schemas = require("../modules/Status/Schemas");
 
 */
 var IoC = require('electrolyte');
-IoC.loader(IoC.node('../node_modules'));
+IoC.loader(IoC.node('node_modules'));
 var buzzStatus = IoC.create('buzz-status');
 
 console.log(buzzStatus);
@@ -35,7 +35,6 @@ describe('Automatic testing of Status A', function(){
     });
     // Here we test ProfileAssessor
     it('ProfileAssessor Test 1', function(){
-
         //console.log("Testing..")
         //var tmp = profileAssessor.create('AppraisalsAssessor');
         //var request = {profileID:'ObjectId("5510932ec1df10641d5e9608")'};
