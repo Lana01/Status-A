@@ -41,7 +41,7 @@ describe('Automatic testing of Status A', function(){
     it('ProfileAssessor Test 1', function(){
 
         console.log("Testing..")
-        var tmp = buzzstatus.create('AppraisalsAssessor');
+        var tmp = buzzStatus.create('AppraisalsAssessor');
         //var request = {profileID:'ObjectId("5510932ec1df10641d5e9608")'};
         //test.assert(typeof tmp(request) === 'function');
         //test.assert(tmp.name === 'AppraisalsAssessor');
