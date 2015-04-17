@@ -8,6 +8,42 @@ exports = module.exports = function(database, resources, reporting) {
         return {title: "user " + id};
     }
 
+    var appraisalLevelSchema = mongoose.Schema({
+        name: String,
+        rating: Number,
+        appraisalType: mongoose.Schema.Types.ObjectId,
+        icon: {
+            data: Buffer,
+            contentType: String
+        }
+    }, {collection: 'Appraisal_Levels'});
+
+    var appraisalTypeSchema = mongoose.Schema({
+        name: String,
+        description: String,
+        notRatedIcon: {
+            data: String,
+            contentType: String
+        },
+        appraisalLevelIDs: [mongoose.Schema.Types.ObjectId]
+    }, {collection: 'Appraisal_Types'});
+
+    var appraisalSchema = mongoose.Schema({
+        threadID: mongoose.Schema.Types.ObjectId,
+        profileID: mongoose.Schema.Types.ObjectId,
+        appraisalLevelID: mongoose.Schema.Types.ObjectId
+    }, {collection: 'Appraisals'});
+
+    var  appraisalTypeActivationSchema = mongoose.Schema({
+        activationPeriod: {
+            from: Date,
+            to: Date
+        },
+        appraisalType: mongoose.Schema.Types.ObjectId,
+        spaceID: String
+    }, {collection: 'Appraisal_Type_Activations'});
+
+
     var spaceDemoSchema = mongoose.Schema({
         space_ID: String,
         space_Name: String,
@@ -101,23 +137,27 @@ exports = module.exports = function(database, resources, reporting) {
     formidable = require("formidable");
 
     router.get('/createAppraisalType', function (req, res, next) {
-            
-            upload(res,req);
+
+        res.render('status/createAppraisalType', {title:"Welcome to Icon Upload",body:"Upload Section"});
 
     });
 
     router.get('/appraisals', function (req, res, next) {
 
         //reference of how to parse object
-       /* {
-            appraisal : [
-                { name: "Yehuda", descrption: "Katz", icon:"me"},
-                { name: "Carl", descrption: "Lerche" ,icon:"me"},
-                { name: "Alan", descrption: "Johnson" ,icon:"me"}
-            ]
-        }*/
+        /* {
+         appraisal : [
+         { name: "Yehuda", descrption: "Katz", icon:"me"},
+         { name: "Carl", descrption: "Lerche" ,icon:"me"},
+         { name: "Alan", descrption: "Johnson" ,icon:"me"}
+         ]
+         }*/
 
-        var appraisalType = mongoose.model('Appraisal_Types', Schemas.appraisalTypeSchema);
+
+        console.log("appraisals ++");
+
+
+        var appraisalType = mongoose.model('Appraisal_Types', appraisalTypeSchema);
         var arr = [];
         appraisalType.find({}, function (error, found) {
 
@@ -125,57 +165,70 @@ exports = module.exports = function(database, resources, reporting) {
                 arr.push(
                     {
                         name:user.name,
-                        descrption:user.description,
+                        description:user.description,
                         icon:user.notRatedIcon.data
                     }
                 );
             });
         });
+        var test="String test";
+        console.log(" passed ");
+        arr.push(
+            {
+                name:test,
+                description:test,
+                icon:test
+            }
+        );
+        console.log(arr+" obj");
 
-        res.render('appraisals', arr);
+        res.render('status/appraisals', arr);
     });
 
-    //saving uploaded data from the form 
-    function upload(response, request) {
-    //console.log("Request handler 'upload' was called.");
-    var target_path=null;
-    var form = new formidable.IncomingForm();
-    //console.log("about to parse");
-    form.parse(request, function(error, fields, files) {
-      
-        
-/* Possible error on Windows systems:
-         tried to rename to an already existing file */
-
-     
-        //console.log(" FROM : "+files.upload.path+" vs "+files.upload.name);
-        //console.log(files.upload.path+"/"+files.upload.name+" vs ");
+    //saving uploaded data from the form
+    router.get('/upload', function (req, res, next) {
+            //console.log("Request handler 'upload' was called.");
+            var request=req;
+            var  response=  res;
+            var target_path = null;
+            var form = new formidable.IncomingForm();
+            //console.log("about to parse");
+            form.parse(request, function (error, fields, files) {
 
 
-        target_path='./icons/'+files.upload.name;
-        //moving the picture to new location and saving location as string
-        fs.rename(files.upload.path, target_path, function(error) {
-            if (error) throw error;
-            fs.unlink(files.upload.path, function() {
-                if (error) throw error;
-                response.write('File uploaded to: ' + target_path + ' - ' + files.upload.size + ' bytes');
-                var obj={};
-                obj.name=fields.name;
-                obj.description=fields.description;
-                obj.icon=target_path;
+                /* Possible error on Windows systems:
+                 tried to rename to an already existing file */
+
+
+                //console.log(" FROM : "+files.upload.path+" vs "+files.upload.name);
+                //console.log(files.upload.path+"/"+files.upload.name+" vs ");
+
+
+                target_path = './icons/' + files.upload.name;
+                //moving the picture to new location and saving location as string
+                fs.rename(files.upload.path, target_path, function (error) {
+                    if (error) throw error;
+                    fs.unlink(files.upload.path, function () {
+                        if (error) throw error;
+                        response.write('File uploaded to: ' + target_path + ' - ' + files.upload.size + ' bytes');
+                        var obj = {};
+                        obj.name = fields.name;
+                        obj.description = fields.description;
+                        obj.icon = target_path;
+
+                    });
+                });
+
+                //  console.log("Done with it");
+
+                response.writeHead(200, {"Content-Type": "text/html"});
+                response.write("received icon:<br/>");
+                //saving the string name and other fields
+                response.render('index');
 
             });
-        });
-
-      //  console.log("Done with it");
-
-        response.writeHead(200, {"Content-Type": "text/html"});
-        response.write("received icon:<br/>");
-        //saving the string name and other fields
-        response.end();
 
     });
-}
 
    return  router;
 
