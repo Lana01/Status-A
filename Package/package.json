@@ -1,6 +1,6 @@
 {
   "name": "buzz-status",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Status add-on module for the Buzz system.",
   "main": "buzzStatus.js",
   "scripts": {},
@@ -19,14 +19,19 @@
     "name": "Status-A Group A",
     "email": "u12274195@tuks.co.za"
   },
-  "_id": "buzz-status@1.0.3",
-  "_shasum": "5cbc8c0baff35cb057885738563d826c8f0cd9cb",
-  "_from": "buzz-status@>=0.0.1",
+  "_id": "buzz-status@1.0.5",
+  "_shasum": "6be35e42b5a9ea46e31e1d6d117a743ce13cbd0f",
+  "_from": "buzz-status@~1.0.5",
   "_npmVersion": "2.5.1",
   "_nodeVersion": "0.12.0",
   "dist": {
-    "shasum": "5cbc8c0baff35cb057885738563d826c8f0cd9cb",
-    "tarball": "http://45.55.188.104:4873/buzz-status/-/buzz-status-1.0.3.tgz"
+    "shasum": "6be35e42b5a9ea46e31e1d6d117a743ce13cbd0f",
+    "tarball": "http://45.55.188.104:4873/buzz-status/-/buzz-status-1.0.5.tgz"
   },
-  "_resolved": "http://45.55.188.104:4873/buzz-status/-/buzz-status-1.0.3.tgz"
+  "_resolved": "http://45.55.188.104:4873/buzz-status/-/buzz-status-1.0.5.tgz",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/Lana01/Status-A/issues"
+  },
+  "homepage": "https://github.com/Lana01/Status-A"
 }

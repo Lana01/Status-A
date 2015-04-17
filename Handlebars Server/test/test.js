@@ -7,6 +7,9 @@ var mongoose = require('mongoose');
 var Schemas = require("../modules/Status/Schemas");
 
 */
+
+var test = require('unit.js');
+
 var IoC = require('electrolyte');
 IoC.loader(IoC.node('../node_modules'));
 var buzzStatus = IoC.create('buzz-status');

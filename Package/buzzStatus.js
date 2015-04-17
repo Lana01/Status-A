@@ -8,7 +8,7 @@
  * @module buzz-status
  */
 
-exports = module.exports = function (buzzDatabase) {
+exports = module.exports = function (buzzDatabase){
     var status = {};
     var mongoose = buzzDatabase.mongoose;
     var db = buzzDatabase.db;

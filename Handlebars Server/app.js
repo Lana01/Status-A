@@ -18,7 +18,7 @@ IoC.loader(IoC.node(path.resolve(__dirname + "/node_modules")) );
  */
 var routes = IoC.create('../routes', app);
 var buzzStatus = IoC.create('buzz-status', app);
-console.log(buzzStatus);
+//console.log(buzzStatus);
 
 app.use(scribe.express.logger()); //Log each request
 app.use('/logs', scribe.webPanel());
