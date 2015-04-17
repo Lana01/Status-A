@@ -12,7 +12,7 @@ var scribe = require('scribe-js')();
 var IoC = require('electrolyte');
 IoC.loader(IoC.node(path.resolve(__dirname + "/node_modules")) );
 
-/**
+/*
  * Set up the routing. All other functions will be called from the routing component.
  * ../routes is used since it lies in the parent directory of the default IoC loader directory
  */
@@ -77,4 +77,11 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
+var port = process.env.PORT || 5000;
+app.listen(port, function() {
+    console.log("Node server running on port: " + port);
+});
+
+
 
