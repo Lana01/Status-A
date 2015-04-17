@@ -207,7 +207,7 @@ exports = module.exports = function (buzzDatabase) {
      * @returns {ProfileAssessor}
      */
 
-    ProfileAssessor.create = function(particularAssessor){
+    function create(particularAssessor){
         //if (typeof factory[particularAssessor] === 'function')
         //{
         //console.log("Returning assesor");
